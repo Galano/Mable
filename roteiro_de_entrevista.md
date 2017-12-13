@@ -15,18 +15,20 @@ O que poderia tornar o seu trabalho mais produtivo: A implantação de um sistem
 
 ## Parte II – Avaliando o Problema:
 
-Descrição
+#### Descrição: 
+Acesso à informação	
 
-Acesso à informação	Causa Raiz
+#### Causa Raiz: 
+Documentos físicos guardados em pastas	
 
-Documentos físicos guardados em pastas	Resolução
+#### Resolução: 
+Disponibilizar os controles no sistema	
 
-Disponibilizar os controles no sistema	Prioridades (0 mais Alta até 5 Média, maior que 5 Baixa)
-2
-PIA	Controle da prefeitura	Cadastros via sistema 	0
-Gerar documento para a prefeitura			3
-Acompanhamento e Alertas (lembretes)			1
-
+#### Prioridades (0 mais Alta até 5 Média, maior que 5 Baixa)
+- 0 PIA	Controle da prefeitura	
+- 1 Acompanhamento e Alertas (lembretes)
+- 2 Cadastros via sistema
+- 3 Gerar documento para a prefeitura
 
 ## Parte III Entendendo o ambiente do cliente
 
