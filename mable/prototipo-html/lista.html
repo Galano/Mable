@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <style>
+        .gap-top10 {
+            margin-top: 10px;
+        }
+
+        .gap10 {
+            margin:10px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .background-body {
+            background-color: #b2e6ff;
+        }
+
+        .background-table {
+            background-color: #FFFFFF;
+        }
+
+        .pad10 {
+            padding: 10px;
+        }
+
+        .text-center {
+            text-align:center;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="panel panel-default gap10">
+            <div class="panel-heading">
+                <h3>Dados pessoais</h3>
+            </div>
+            <div class="panel-body background-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4>Nome do Aluno</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control">
+                            <option>Amanda Castro</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <h4>RG</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-8 col-sm-2">
+                        <input type="button" value="PESQUISAR" class="btn btn-success form-control"/>
+                    </div>
+                    <div class="col-sm-2">
+                            <input type="button" value="NOVO" class="btn btn-success form-control"/>
+                        </div>
+                </div>
+                <hr/>
+                <div class="row gap10">
+                    <div class="col-sm-12">
+                        <table class="table-striped table-responsive table-horvered table background-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nome do Aluno</th>
+                                    <th class="text-center">Nascimento</th>
+                                    <th class="text-center">Data de cadastro</th>
+                                    <th class="text-center">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Giocomo Guillizzon</td>
+                                    <td>24/07/1999</td>
+                                    <td>14/05/2018</td>
+                                    <td><input type="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Marco Botton</td>
+                                    <td>24/07/1999</td>
+                                    <td>14/05/2018</td>
+                                    <td><input type="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Mariah Moclachian</td>
+                                    <td>24/07/1999</td>
+                                    <td>14/05/2018</td>
+                                    <td><input type="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Valerie Liberty</td>
+                                    <td>24/07/1999</td>
+                                    <td>14/05/2018</td>
+                                    <td><input type="radio"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
