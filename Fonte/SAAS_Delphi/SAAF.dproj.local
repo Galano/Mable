@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/08/05 20:37:07.000.310,=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas</Transaction>
+    <Transaction>2018/08/05 20:37:16.000.344,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.dfm=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uRelatorioAlunos.dfm</Transaction>
+    <Transaction>2018/08/05 20:37:16.000.344,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uRelatorioAlunos.pas</Transaction>
+    <Transaction>2018/08/09 20:57:18.000.190,=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas</Transaction>
+    <Transaction>2018/08/09 20:57:25.000.848,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.dfm=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uLogin.dfm</Transaction>
+    <Transaction>2018/08/09 20:57:25.000.848,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uLogin.pas</Transaction>
+    <Transaction>2018/09/12 00:23:29.000.394,=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas</Transaction>
+    <Transaction>2018/09/12 00:23:41.000.697,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uRelatorioCandidatos.dfm=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.dfm</Transaction>
+    <Transaction>2018/09/12 00:23:41.000.697,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uRelatorioCandidatos.pas=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\Unit1.pas</Transaction>
+    <Transaction>2018/09/14 16:39:30.000.390,=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\uCadastroFuncionario.pas</Transaction>
+    <Transaction>2018/09/16 20:04:05.000.614,C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\SAAS.dproj=C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Delphi\SAAF.dproj</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="uPrincipal.pas"/>
+    <File Path="uPrincipal.dfm"/>
+    <File Path="uDM_Principal.pas"/>
+    <File Path="uDM_Principal.dfm"/>
+    <File Path="uCadastroBase.pas"/>
+    <File Path="uCadastroBase.dfm"/>
+    <File Path="uCadastroAluno.pas"/>
+    <File Path="uCadastroAluno.dfm"/>
+    <File Path="uCadastroCandidato.pas"/>
+    <File Path="uCadastroCandidato.dfm"/>
+    <File Path="uClasseCadastroCandidato.pas"/>
+    <File Path="uCadastroParametros.pas"/>
+    <File Path="uCadastroParametros.dfm"/>
+    <File Path="uAbout.pas"/>
+    <File Path="uAbout.dfm"/>
+    <File Path="uSobre.pas"/>
+    <File Path="uSobre.dfm"/>
+    <File Path="uAcompanhamento.pas"/>
+    <File Path="uAcompanhamento.dfm"/>
+    <File Path="uRelatorioAlunos.pas"/>
+    <File Path="uRelatorioAlunos.dfm"/>
+    <File Path="uLogin.pas"/>
+    <File Path="uLogin.dfm"/>
+    <File Path="uRelatorioCandidatos.pas"/>
+    <File Path="uRelatorioCandidatos.dfm"/>
+    <File Path="uCadastroFuncionario.pas"/>
+    <File Path="uCadastroFuncionario.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8ed58a06-6589-4364-90c8-9bf60c482585}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SAAF.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Atualizador\Atualizador.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\SAAF_Mobile\SAAF_MOBILE.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\SAAF_ServerRest\SAAF_ServerRest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SAAF">
+        <MSBuild Projects="SAAF.dproj"/>
+    </Target>
+    <Target Name="SAAF:Clean">
+        <MSBuild Projects="SAAF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SAAF:Make">
+        <MSBuild Projects="SAAF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Atualizador">
+        <MSBuild Projects="..\Atualizador\Atualizador.dproj"/>
+    </Target>
+    <Target Name="Atualizador:Clean">
+        <MSBuild Projects="..\Atualizador\Atualizador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Atualizador:Make">
+        <MSBuild Projects="..\Atualizador\Atualizador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SAAF_MOBILE">
+        <MSBuild Projects="..\SAAF_Mobile\SAAF_MOBILE.dproj"/>
+    </Target>
+    <Target Name="SAAF_MOBILE:Clean">
+        <MSBuild Projects="..\SAAF_Mobile\SAAF_MOBILE.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SAAF_MOBILE:Make">
+        <MSBuild Projects="..\SAAF_Mobile\SAAF_MOBILE.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SAAF_ServerRest">
+        <MSBuild Projects="..\SAAF_ServerRest\SAAF_ServerRest.dproj"/>
+    </Target>
+    <Target Name="SAAF_ServerRest:Clean">
+        <MSBuild Projects="..\SAAF_ServerRest\SAAF_ServerRest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SAAF_ServerRest:Make">
+        <MSBuild Projects="..\SAAF_ServerRest\SAAF_ServerRest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SAAF;Atualizador;SAAF_MOBILE;SAAF_ServerRest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SAAF:Clean;Atualizador:Clean;SAAF_MOBILE:Clean;SAAF_ServerRest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SAAF:Make;Atualizador:Make;SAAF_MOBILE:Make;SAAF_ServerRest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
