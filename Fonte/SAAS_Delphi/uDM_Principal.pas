@@ -12,7 +12,10 @@ uses
   FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   System.ImageList, cxImageList, cxGraphics, HTTPApp, ACBrBase, ACBrSocket,
-  Inifiles, ACBrCEP;
+  Inifiles, ACBrCEP, Vcl.Forms, IdIOHandler,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,
+   IdExplicitTLSClientServerBase, IdMessageClient,
+  IdSMTPBase, IdSMTP, IdMessage;
 
 type
   TEndereco = class
@@ -417,6 +420,324 @@ type
     cdsNecessidadeCandidatoCANDIDATO_NECESSIDADE: TAutoIncField;
     cdsNecessidadeCandidatoNECESSIDADE: TIntegerField;
     cdsNecessidadeCandidatoCANDIDATO: TIntegerField;
+    sqlCandidatoPARENTESCO: TStringField;
+    sqlCandidatoENCAMINHADO: TStringField;
+    sqlCandidatoPROCEDENCIA: TStringField;
+    sqlCandidatoFOTO: TBlobField;
+    cdsCandidatoPARENTESCO: TStringField;
+    cdsCandidatoENCAMINHADO: TStringField;
+    cdsCandidatoPROCEDENCIA: TStringField;
+    cdsCandidatoFOTO: TBlobField;
+    sqlCandidatoRESPONSAVEL: TStringField;
+    cdsCandidatoRESPONSAVEL: TStringField;
+    sqlCandidatoPRONTUARIO: TMemoField;
+    cdsCandidatoPRONTUARIO: TMemoField;
+    sqlCandidatoNIS: TStringField;
+    cdsCandidatoNIS: TStringField;
+    dspProntuario: TDataSetProvider;
+    cdsProntuario: TClientDataSet;
+    dsProntuario: TDataSource;
+    sqlProntuario: TFDQuery;
+    sqlProntuarioNOME: TStringField;
+    sqlProntuarioRG: TStringField;
+    sqlProntuarioCPF_CNPJ: TStringField;
+    sqlProntuarioNIS: TStringField;
+    sqlProntuarioIDADE: TBCDField;
+    sqlProntuarioNOME_PAI: TStringField;
+    sqlProntuarioNOME_MAE: TStringField;
+    sqlProntuarioRESPONSAVEL: TStringField;
+    sqlProntuarioPRONTUARIO: TMemoField;
+    sqlProntuarioEMAIL: TStringField;
+    sqlProntuarioCANDIDATO: TFDAutoIncField;
+    sqlProntuarioPESSOA: TIntegerField;
+    sqlProntuarioFOTO: TBlobField;
+    sqlProntuarioMATRICULA: TIntegerField;
+    cdsProntuarioNOME: TStringField;
+    cdsProntuarioRG: TStringField;
+    cdsProntuarioCPF_CNPJ: TStringField;
+    cdsProntuarioNIS: TStringField;
+    cdsProntuarioIDADE: TBCDField;
+    cdsProntuarioNOME_PAI: TStringField;
+    cdsProntuarioNOME_MAE: TStringField;
+    cdsProntuarioRESPONSAVEL: TStringField;
+    cdsProntuarioPRONTUARIO: TMemoField;
+    cdsProntuarioEMAIL: TStringField;
+    cdsProntuarioCANDIDATO: TAutoIncField;
+    cdsProntuarioPESSOA: TIntegerField;
+    cdsProntuarioFOTO: TBlobField;
+    cdsProntuarioMATRICULA: TIntegerField;
+    dspCandidato_Prontuario: TDataSetProvider;
+    cdsCandidato_Prontuario: TClientDataSet;
+    dsCandidato_Prontuario: TDataSource;
+    sqlCandidato_Prontuario: TFDQuery;
+    sqlCandidato_ProntuarioPRONTUARIO: TFDAutoIncField;
+    sqlCandidato_ProntuarioCANDIDATO: TIntegerField;
+    sqlCandidato_ProntuarioFAZUSODEMEDICAMENTOS: TIntegerField;
+    sqlCandidato_ProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField;
+    sqlCandidato_ProntuarioALERGICOALGUMMEDICAMENTO: TIntegerField;
+    sqlCandidato_ProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField;
+    sqlCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE: TIntegerField;
+    sqlCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField;
+    sqlCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA: TIntegerField;
+    sqlCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_QUAL: TStringField;
+    sqlCandidato_ProntuarioAUTORIZADOIREMBORASOZINHO: TIntegerField;
+    sqlCandidato_ProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO: TIntegerField;
+    sqlCandidato_ProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS: TIntegerField;
+    sqlCandidato_ProntuarioCOMPARECERDIARIAMENTE: TIntegerField;
+    sqlCandidato_ProntuarioPERIODOADAPTACO: TStringField;
+    sqlCandidato_ProntuarioDIASINDICADOSFREQUENCIA: TStringField;
+    sqlCandidato_ProntuarioPODERAALMOCARORGANIZACO: TIntegerField;
+    sqlCandidato_ProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField;
+    sqlCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO: TIntegerField;
+    sqlCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField;
+    sqlCandidato_ProntuarioDATA_REF: TSQLTimeStampField;
+    cdsCandidato_ProntuarioPRONTUARIO: TAutoIncField;
+    cdsCandidato_ProntuarioCANDIDATO: TIntegerField;
+    cdsCandidato_ProntuarioFAZUSODEMEDICAMENTOS: TIntegerField;
+    cdsCandidato_ProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField;
+    cdsCandidato_ProntuarioALERGICOALGUMMEDICAMENTO: TIntegerField;
+    cdsCandidato_ProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField;
+    cdsCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE: TIntegerField;
+    cdsCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField;
+    cdsCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA: TIntegerField;
+    cdsCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_QUAL: TStringField;
+    cdsCandidato_ProntuarioAUTORIZADOIREMBORASOZINHO: TIntegerField;
+    cdsCandidato_ProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO: TIntegerField;
+    cdsCandidato_ProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS: TIntegerField;
+    cdsCandidato_ProntuarioCOMPARECERDIARIAMENTE: TIntegerField;
+    cdsCandidato_ProntuarioPERIODOADAPTACO: TStringField;
+    cdsCandidato_ProntuarioDIASINDICADOSFREQUENCIA: TStringField;
+    cdsCandidato_ProntuarioPODERAALMOCARORGANIZACO: TIntegerField;
+    cdsCandidato_ProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField;
+    cdsCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO: TIntegerField;
+    cdsCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField;
+    cdsCandidato_ProntuarioDATA_REF: TSQLTimeStampField;
+    sqlCandidatoPAI_NASCIMENTO: TSQLTimeStampField;
+    sqlCandidatoMAE_NASCIMENTO: TSQLTimeStampField;
+    sqlCandidatoRESPONSAVEL_NASCIMENTO: TSQLTimeStampField;
+    sqlCandidatoPROFISSAO: TStringField;
+    sqlCandidatoESCOLARIDADE: TStringField;
+    cdsCandidatoPAI_NASCIMENTO: TSQLTimeStampField;
+    cdsCandidatoMAE_NASCIMENTO: TSQLTimeStampField;
+    cdsCandidatoRESPONSAVEL_NASCIMENTO: TSQLTimeStampField;
+    cdsCandidatoPROFISSAO: TStringField;
+    cdsCandidatoESCOLARIDADE: TStringField;
+    sqlProntuarioFAZUSODEMEDICAMENTOS_SIM: TStringField;
+    sqlProntuarioFAZUSODEMEDICAMENTOS_NAO: TStringField;
+    sqlProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField;
+    sqlProntuarioALERGICOALGUMMEDICAMENTO_SIM: TStringField;
+    sqlProntuarioALERGICOALGUMMEDICAMENTO_NAO: TStringField;
+    sqlProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField;
+    sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_SIM: TStringField;
+    sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_NAO: TStringField;
+    sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField;
+    sqlProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_SIM: TStringField;
+    sqlProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_NAO: TStringField;
+    sqlProntuarioAUTORIZADOIREMBORASOZINHO_SIM: TStringField;
+    sqlProntuarioAUTORIZADOIREMBORASOZINHO_NAO: TStringField;
+    sqlProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_SIM: TStringField;
+    sqlProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_NAO: TStringField;
+    sqlProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM: TStringField;
+    sqlProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO: TStringField;
+    sqlProntuarioCOMPARECERDIARIAMENTE_SIM: TStringField;
+    sqlProntuarioCOMPARECERDIARIAMENTE_NAO: TStringField;
+    sqlProntuarioPERIODOADAPTACO: TStringField;
+    sqlProntuarioDIASINDICADOSFREQUENCIA: TStringField;
+    sqlProntuarioPODERAALMOCARORGANIZACO_SIM: TStringField;
+    sqlProntuarioPODERAALMOCARORGANIZACO_NAO: TStringField;
+    sqlProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField;
+    sqlProntuarioALERGICORESTRICOALGUMALIMENTO_SIM: TStringField;
+    sqlProntuarioALERGICORESTRICOALGUMALIMENTO_NAO: TStringField;
+    sqlProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField;
+    cdsProntuarioFAZUSODEMEDICAMENTOS_SIM: TStringField;
+    cdsProntuarioFAZUSODEMEDICAMENTOS_NAO: TStringField;
+    cdsProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField;
+    cdsProntuarioALERGICOALGUMMEDICAMENTO_SIM: TStringField;
+    cdsProntuarioALERGICOALGUMMEDICAMENTO_NAO: TStringField;
+    cdsProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField;
+    cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_SIM: TStringField;
+    cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_NAO: TStringField;
+    cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField;
+    cdsProntuarioAUTORIZADOIREMBORASOZINHO_SIM: TStringField;
+    cdsProntuarioAUTORIZADOIREMBORASOZINHO_NAO: TStringField;
+    cdsProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_SIM: TStringField;
+    cdsProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_NAO: TStringField;
+    cdsProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM: TStringField;
+    cdsProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO: TStringField;
+    cdsProntuarioCOMPARECERDIARIAMENTE_SIM: TStringField;
+    cdsProntuarioCOMPARECERDIARIAMENTE_NAO: TStringField;
+    cdsProntuarioPERIODOADAPTACO: TStringField;
+    cdsProntuarioDIASINDICADOSFREQUENCIA: TStringField;
+    cdsProntuarioPODERAALMOCARORGANIZACO_SIM: TStringField;
+    cdsProntuarioPODERAALMOCARORGANIZACO_NAO: TStringField;
+    cdsProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField;
+    cdsProntuarioALERGICORESTRICOALGUMALIMENTO_SIM: TStringField;
+    cdsProntuarioALERGICORESTRICOALGUMALIMENTO_NAO: TStringField;
+    cdsProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField;
+    sqlProntuarioIDADE_PAI: TBCDField;
+    sqlProntuarioIDADE_MAE: TBCDField;
+    sqlProntuarioIDADE_RESP: TBCDField;
+    cdsProntuarioIDADE_PAI: TBCDField;
+    cdsProntuarioIDADE_MAE: TBCDField;
+    cdsProntuarioIDADE_RESP: TBCDField;
+    sqlProntuarioPROFISSAO: TStringField;
+    sqlProntuarioESCOLARIDADE: TStringField;
+    cdsProntuarioPROFISSAO: TStringField;
+    cdsProntuarioESCOLARIDADE: TStringField;
+    sqlCandidato_ProntuarioCANDIDATO_NOMEESCOLA: TStringField;
+    sqlCandidato_ProntuarioATIVIDADE_EXTRAS: TStringField;
+    sqlCandidato_ProntuarioFREQUENTAESCOLA: TIntegerField;
+    sqlCandidato_ProntuarioANO: TStringField;
+    sqlCandidato_ProntuarioPERIODO: TIntegerField;
+    sqlCandidato_ProntuarioTAMANHOCAMISETA: TIntegerField;
+    sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO: TIntegerField;
+    sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField;
+    sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField;
+    sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField;
+    sqlCandidato_ProntuarioRECEBEBENEFICIO: TIntegerField;
+    sqlCandidato_ProntuarioRECEBEBENEFICIO_QUAL: TStringField;
+    cdsCandidato_ProntuarioCANDIDATO_NOMEESCOLA: TStringField;
+    cdsCandidato_ProntuarioATIVIDADE_EXTRAS: TStringField;
+    cdsCandidato_ProntuarioFREQUENTAESCOLA: TIntegerField;
+    cdsCandidato_ProntuarioANO: TStringField;
+    cdsCandidato_ProntuarioPERIODO: TIntegerField;
+    cdsCandidato_ProntuarioTAMANHOCAMISETA: TIntegerField;
+    cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO: TIntegerField;
+    cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField;
+    cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField;
+    cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField;
+    cdsCandidato_ProntuarioRECEBEBENEFICIO: TIntegerField;
+    cdsCandidato_ProntuarioRECEBEBENEFICIO_QUAL: TStringField;
+    sqlProntuarioCANDIDATO_NOMEESCOLA: TStringField;
+    sqlProntuarioATIVIDADE_EXTRAS: TStringField;
+    sqlProntuarioFREQUENTAESCOLA_SIM: TStringField;
+    sqlProntuarioFREQUENTAESCOLA_NAO: TStringField;
+    sqlProntuarioANO: TStringField;
+    sqlProntuarioPERIODO_MANHA: TStringField;
+    sqlProntuarioPERIODO_TARDE: TStringField;
+    sqlProntuarioPERIODO_NOITE: TStringField;
+    sqlProntuarioTAMANHOCAMISETA_P: TStringField;
+    sqlProntuarioTAMANHOCAMISETA_M: TStringField;
+    sqlProntuarioTAMANHOCAMISETA_G: TStringField;
+    sqlProntuarioTAMANHOCAMISETA_GG: TStringField;
+    sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_SIM: TStringField;
+    sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_NAO: TStringField;
+    sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField;
+    sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField;
+    sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField;
+    cdsProntuarioCANDIDATO_NOMEESCOLA: TStringField;
+    cdsProntuarioATIVIDADE_EXTRAS: TStringField;
+    cdsProntuarioFREQUENTAESCOLA_SIM: TStringField;
+    cdsProntuarioFREQUENTAESCOLA_NAO: TStringField;
+    cdsProntuarioANO: TStringField;
+    cdsProntuarioPERIODO_MANHA: TStringField;
+    cdsProntuarioPERIODO_TARDE: TStringField;
+    cdsProntuarioPERIODO_NOITE: TStringField;
+    cdsProntuarioTAMANHOCAMISETA_P: TStringField;
+    cdsProntuarioTAMANHOCAMISETA_M: TStringField;
+    cdsProntuarioTAMANHOCAMISETA_G: TStringField;
+    cdsProntuarioTAMANHOCAMISETA_GG: TStringField;
+    cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_SIM: TStringField;
+    cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_NAO: TStringField;
+    cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField;
+    cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField;
+    cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField;
+    sqlProntuarioRECEBEBENEFICIO_BPC: TStringField;
+    sqlProntuarioRECEBEBENEFICIO_APOSENTADORIA: TStringField;
+    sqlProntuarioRECEBEBENEFICIO_NAO: TStringField;
+    sqlProntuarioRECEBEBENEFICIO_OUTROS: TStringField;
+    sqlProntuarioRECEBEBENEFICIO_QUAL: TStringField;
+    cdsProntuarioRECEBEBENEFICIO_BPC: TStringField;
+    cdsProntuarioRECEBEBENEFICIO_APOSENTADORIA: TStringField;
+    cdsProntuarioRECEBEBENEFICIO_NAO: TStringField;
+    cdsProntuarioRECEBEBENEFICIO_OUTROS: TStringField;
+    cdsProntuarioRECEBEBENEFICIO_QUAL: TStringField;
+    sqlProntuarioRECEBE_RENDA: TStringField;
+    sqlProntuarioRECEBE_BOLSA: TStringField;
+    sqlProntuarioRECEBE_RENDA_CIDA: TStringField;
+    sqlProntuarioRECEBE_ACAOJOVE: TStringField;
+    cdsProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_SIM: TStringField;
+    cdsProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_NAO: TStringField;
+    cdsProntuarioRECEBE_RENDA: TStringField;
+    cdsProntuarioRECEBE_BOLSA: TStringField;
+    cdsProntuarioRECEBE_RENDA_CIDA: TStringField;
+    cdsProntuarioRECEBE_ACAOJOVE: TStringField;
+    dspProntuario_Endereco: TDataSetProvider;
+    cdsProntuario_Endereco: TClientDataSet;
+    dsProntuario_Endereco: TDataSource;
+    sqlProntuario_Endereco: TFDQuery;
+    sqlProntuario_EnderecoCANDIDATO: TFDAutoIncField;
+    sqlProntuario_EnderecoTIPO: TStringField;
+    sqlProntuario_EnderecoLOCATARIO: TStringField;
+    sqlProntuario_EnderecoLOCALIDADE: TIntegerField;
+    sqlProntuario_EnderecoUF: TIntegerField;
+    sqlProntuario_EnderecoCEP: TStringField;
+    sqlProntuario_EnderecoBAIRRO: TStringField;
+    sqlProntuario_EnderecoNUMERO: TStringField;
+    cdsProntuario_EnderecoCANDIDATO: TAutoIncField;
+    cdsProntuario_EnderecoTIPO: TStringField;
+    cdsProntuario_EnderecoLOCATARIO: TStringField;
+    cdsProntuario_EnderecoLOCALIDADE: TIntegerField;
+    cdsProntuario_EnderecoUF: TIntegerField;
+    cdsProntuario_EnderecoCEP: TStringField;
+    cdsProntuario_EnderecoBAIRRO: TStringField;
+    cdsProntuario_EnderecoNUMERO: TStringField;
+    dspProntuario_Contato: TDataSetProvider;
+    cdsProntuario_Contato: TClientDataSet;
+    dsProntuario_Contato: TDataSource;
+    sqlProntuario_Contato: TFDQuery;
+    sqlProntuario_ContatoCANDIDATO: TFDAutoIncField;
+    sqlProntuario_ContatoTIPO: TIntegerField;
+    sqlProntuario_ContatoVALOR: TStringField;
+    cdsProntuario_ContatoCANDIDATO: TAutoIncField;
+    cdsProntuario_ContatoTIPO: TIntegerField;
+    cdsProntuario_ContatoVALOR: TStringField;
+    sqlProntuario_EnderecoNOME_LOCALIDADE: TStringField;
+    sqlProntuario_EnderecoSIGLA: TStringField;
+    cdsProntuario_EnderecoNOME_LOCALIDADE: TStringField;
+    cdsProntuario_EnderecoSIGLA: TStringField;
+    sqlTelaAlunoALUNO: TFDAutoIncField;
+    dspListarFuncionarios: TDataSetProvider;
+    cdsListarFuncionarios: TClientDataSet;
+    dsListarFuncionarios: TDataSource;
+    sqlListarFuncionarios: TFDQuery;
+    sqlListarFuncionariosFUNCIONARIO: TFDAutoIncField;
+    sqlListarFuncionariosNOME: TStringField;
+    cdsListarFuncionariosFUNCIONARIO: TAutoIncField;
+    cdsListarFuncionariosNOME: TStringField;
+    sqlUsuarios: TFDQuery;
+    dspValidaLogin: TDataSetProvider;
+    cdsValidaLogin: TClientDataSet;
+    sqlUsuariosUSUARIO: TFDAutoIncField;
+    sqlUsuariosUSR_LOGIN: TStringField;
+    sqlUsuariosUSR_SENHA: TStringField;
+    sqlUsuariosPESSOA: TIntegerField;
+    sqlUsuariosGRUPOACESSO: TIntegerField;
+    sqlUsuariosFUNCIONARIO: TIntegerField;
+    sqlUsuariosSITUACAO: TIntegerField;
+    dsUsuarios: TDataSource;
+    sqlGrupoAcesso: TFDQuery;
+    dspGrupoAcesso: TDataSetProvider;
+    cdsGrupoAcesso: TClientDataSet;
+    dsGrupoAcesso: TDataSource;
+    sqlGrupoAcessoGRUPOACESSO: TFDAutoIncField;
+    sqlGrupoAcessoNOME: TStringField;
+    cdsGrupoAcessoGRUPOACESSO: TAutoIncField;
+    cdsGrupoAcessoNOME: TStringField;
+    sqlValidaLogin: TFDQuery;
+    dspUsuarios: TDataSetProvider;
+    cdsUsuarios: TClientDataSet;
+    sqlValidaLoginGRUPOACESSO: TIntegerField;
+    cdsValidaLoginGRUPOACESSO: TIntegerField;
+    cdsUsuariosUSUARIO: TAutoIncField;
+    cdsUsuariosUSR_LOGIN: TStringField;
+    cdsUsuariosUSR_SENHA: TStringField;
+    cdsUsuariosPESSOA: TIntegerField;
+    cdsUsuariosGRUPOACESSO: TIntegerField;
+    cdsUsuariosFUNCIONARIO: TIntegerField;
+    cdsUsuariosSITUACAO: TIntegerField;
+    sqlAcompanhamentoEMAIL: TStringField;
+    cdsAcompanhamentoEMAIL: TStringField;
     procedure dspParametrosGetTableName(Sender: TObject; DataSet: TDataSet;
       var TableName: WideString);
     procedure cdsEnderecoCEPChange(Sender: TField);
@@ -424,13 +745,21 @@ type
       var TableName: string);
     procedure DataModuleCreate(Sender: TObject);
   private
-    FVersaoSistema, FVersaoExecutavel, FURLAtualizacao, FNomeExe: string;
-    FQtdVagas, FModoTela, FQtdAlunosAtivos: Integer;
+    FVersaoSistema, FVersaoExecutavel, FURLAtualizacao, FNomeExe,
+    Femail_login, Femail_senha,Femail_smtp, Femail_porta : string;
+    FQtdVagas, FModoTela, FQtdAlunosAtivos, FTamanho_Exe: Integer;
     function TrocaCaracterEspecial(aTexto: string; aLimExt: boolean): string;
 
     { Private declarations }
   public
+      property Email_login: String read Femail_login write Femail_login;
+      property Email_senha: String read Femail_senha write Femail_senha;
+      property Email_smtp: String read Femail_smtp write Femail_smtp;
+      property Email_porta: String read Femail_porta write Femail_porta;
+
+
     property VersaoSistema: String read FVersaoSistema write FVersaoSistema;
+    property Tamanho_Exe: Integer read FTamanho_Exe write FTamanho_Exe;
     property URLAtualizacao: String read FURLAtualizacao write FURLAtualizacao;
     property VersaoExecutavel: String read FVersaoExecutavel
       write FVersaoExecutavel;
@@ -445,6 +774,9 @@ type
     function isCPF(CPF: string): boolean;
     function ConsultaCEP(sCEP: string): TEndereco;
     procedure AtualizarVersao;
+    function TamanhoArquivo(Arquivo : String):Integer;
+    procedure EnviarEmail(username, password, totarget, subject, body: string);
+
     { Public declarations }
   end;
 
@@ -471,13 +803,26 @@ begin
       URLAtualizacao := dm_principal.cdsParametrosVALOR.AsString
     else if dm_principal.cdsParametrosPARAMETRO.AsString = 'QtdVagas' then
       QtdVagas := StrToInt(dm_principal.cdsParametrosVALOR.AsString)
-    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'QtdAlunosAtivos'
-    then
-      QtdAlunosAtivos := StrToInt(dm_principal.cdsParametrosVALOR.AsString);
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'Tamanho_Exe' then
+      Tamanho_Exe := StrToInt(dm_principal.cdsParametrosVALOR.AsString)
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'QtdAlunosAtivos' then
+      QtdAlunosAtivos := StrToInt(dm_principal.cdsParametrosVALOR.AsString)
+
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'Email_login' then
+      email_login := dm_principal.cdsParametrosVALOR.AsString
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'Email_senha' then
+      email_senha := dm_principal.cdsParametrosVALOR.AsString
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'Email_smtp' then
+      email_smtp := dm_principal.cdsParametrosVALOR.AsString
+    else if dm_principal.cdsParametrosPARAMETRO.AsString = 'Email_porta' then
+      email_porta := dm_principal.cdsParametrosVALOR.AsString;
+
+
+
     dm_principal.cdsParametros.Next;
   end;
 
-  VersaoExecutavel := dm_principal.ObterVersaoApp(PathPrograma);
+   VersaoExecutavel := dm_principal.ObterVersaoApp(PathPrograma);
 
 end;
 
@@ -630,6 +975,59 @@ begin
   TableName := 'PARAMETROS';
 end;
 
+procedure Tdm_principal.EnviarEmail(username, password, totarget, subject,
+  body: string);
+var
+  DATA: TIdMessage;
+  SMTP: TIdSMTP;
+  SSL: TIdSSLIOHandlerSocketOpenSSL;
+  Fsmtp : string; Fporta : string;
+begin
+
+  Fsmtp := 'smtp.gmail.com';
+  Fporta := '587';
+
+  if username = '' then
+  begin
+    username := Email_login;
+    password := Email_senha;
+    Fsmtp := Email_smtp;
+    Fporta := Email_porta;
+  end;
+
+
+  SMTP := TIdSMTP.Create(nil);
+  DATA := TIdMessage.Create(nil);
+  SSL := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+
+  SSL.SSLOptions.Method := sslvTLSv1;
+  SSL.SSLOptions.Mode := sslmUnassigned;
+  SSL.SSLOptions.VerifyMode := [];
+  SSL.SSLOptions.VerifyDepth := 0;
+
+  DATA.From.Address := username;
+  DATA.Recipients.EMailAddresses := totarget;
+  DATA.subject := subject;
+  DATA.body.text := body;
+
+  SMTP.IOHandler := SSL;
+  SMTP.Host := Fsmtp;//'smtp.gmail.com';
+  SMTP.Port := StrToint(Fporta);//587;
+  SMTP.username := username;
+  SMTP.password := password;
+  SMTP.UseTLS := utUseExplicitTLS;
+
+  SMTP.Connect;
+  SMTP.Send(DATA);
+  SMTP.Disconnect;
+
+  SMTP.Free;
+  DATA.Free;
+  SSL.Free;
+
+end;
+
+
 function Tdm_principal.isCPF(CPF: string): boolean;
 var
   dig10, dig11: string;
@@ -703,7 +1101,19 @@ begin
     if PathPrograma = '' then
       Prog := NomeExe
     else
-      Prog := PathPrograma;
+    begin
+      if FileExists(PathPrograma) then
+      begin
+       Prog := PathPrograma;
+      end
+      else
+      begin
+       Result := '0.0.0.0';
+       exit;
+      end;
+
+
+    end;
 
     VerInfoSize := GetFileVersionInfoSize(PChar(Prog), Dummy);
     GetMem(VerInfo, VerInfoSize);
@@ -739,6 +1149,17 @@ begin
 
   dm_principal.cdsProximoID.First;
   Result := dm_principal.cdsProximoIDPROX_ID.AsInteger;
+end;
+
+function Tdm_principal.TamanhoArquivo(Arquivo: String): Integer;
+var
+  myFile: file of Byte; // Utilizando file of byte, o tratamento do arquivo
+  myFileSize: Longint; // LongInt para garantir que arquivos muito longos
+begin
+    AssignFile(myFile, Arquivo ); // Cria um ponteiro
+    Reset(myFile); // Abre o arquivo como somente leitura
+    myFileSize := FileSize(myFile); // Obtém o tamanho do arquivo
+    Result :=  (FileSize (myFile)); // Exibe o tamanho
 end;
 
 function Tdm_principal.TrocaCaracterEspecial(aTexto: string;
@@ -780,10 +1201,12 @@ var
   BaixouArquivo : Boolean;
   ArquivoNovo : String;
   Arquivo : String;
-  Cont : Integer;
+  TamArquivo, Cont : Integer;
 begin
   Arquivo := ExtractFileDir(ParamStr(0)) + '\SAAF.exe';
   ArquivoNovo := ExtractFileDir(ParamStr(0)) + '\SAAF_NOVO.exe';
+
+  Application.ProcessMessages;
 
   if DM_Principal.VersaoExecutavel <> DM_Principal.VersaoSistema then
   begin
@@ -791,24 +1214,61 @@ begin
 
     URLDownloadToFile(nil, pchar(DM_Principal.URLAtualizacao),pchar( ArquivoNovo ), 0, nil);
 
+    BaixouArquivo :=  FileExists( ArquivoNovo );
+
+
+    Cont := 0;
+    if not BaixouArquivo then
     repeat
-        BaixouArquivo :=  FileExists( ArquivoNovo );
-        sleep(1000);
+
+
+
+        sleep(100);
         Cont := Cont+1;
         if Cont>100 then
         begin
+          BaixouArquivo :=  FileExists( ArquivoNovo );
+
+          if BaixouArquivo then
+          begin
+              TamArquivo := TamanhoArquivo(ArquivoNovo);
+              if TamArquivo>=FTamanho_Exe then
+                  BaixouArquivo := True;
+          end;
+
+
           ShowMEssage('Erro de conexão.');
           exit;
         end;
     until BaixouArquivo;
 
-    DeleteFile(  pchar(Arquivo) );
-    RenameFile(  pchar(ArquivoNovo),  pchar(Arquivo) );
 
-   WinExec(  PAnsiChar( Arquivo) , 0);
+    try
+       if FileExists(Arquivo) then
+          DeleteFile(  pchar(Arquivo) );
+    except on e:exception do begin
+        ShowMEssage('DeleteFile => ' + e.Message);
+    end;
+
+    end;
+
+    try
+      RenameFile(  pchar(ArquivoNovo),  pchar(Arquivo) );
+    except on e:exception do begin
+        ShowMEssage('RenameFile => ' + e.Message);
+    end;
+
+    end;
+
+
+   //WinExec(  PAnsiChar( Arquivo) , 0);
+   ShowMessage('Sistema atualizado com sucesso, execute-o novamente.');
 
   end;
 
 end;
+
+
+
 
 end.

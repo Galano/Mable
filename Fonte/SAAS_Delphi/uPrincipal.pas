@@ -8,7 +8,7 @@ uses
   uDM_Principal, shellapi ,
   ComCtrls, UrlMon, uSobre, IdBaseComponent, IdComponent, IdTCPConnection,
   IdTCPClient, IdHTTP, System.Actions, dxSkinsCore, dxSkinBlack, dxSkinBlue,
-  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom,cxGridExportLink,   dxSkinDarkSide,
   dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
   dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
   dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
@@ -28,7 +28,7 @@ uses
   cxDataStorage, cxEdit, cxNavigator,
   cxDataControllerConditionalFormattingRulesManagerDialog, Data.DB, cxDBData,
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, cxTextEdit;
+  cxGridDBTableView, cxGrid, cxTextEdit, cxContainer, cxCheckBox;
 
 type
   TfrmPrincipal = class(TForm)
@@ -38,7 +38,7 @@ type
     dxSkinController1: TdxSkinController;
     rbMenuPrincipalTab1: TdxRibbonTab;
     rbMenuPrincipal: TdxRibbon;
-    dxBarManager1: TdxBarManager;
+    btnExibirAcompanhamentos: TdxBarManager;
     dxRibbon1Tab2: TdxRibbonTab;
     dxBarLargeButton1: TdxBarLargeButton;
     dxBarManager1Bar1: TdxBar;
@@ -79,6 +79,12 @@ type
     dxBarLargeButton11: TdxBarLargeButton;
     dxBarLargeButton4: TdxBarLargeButton;
     actRelCandidatos: TAction;
+    actProntuario: TAction;
+    btnProntuario: TdxBarLargeButton;
+    ppMenu: TPopupMenu;
+    ExportarExcel1: TMenuItem;
+    btnEnviarEmail: TButton;
+    cbExibirAcompanhamento: TcxCheckBox;
     procedure actCandidatosExecute(Sender: TObject);
     procedure actAlunosExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
@@ -90,6 +96,10 @@ type
     procedure rbMenuPrincipalTabChanged(Sender: TdxCustomRibbon);
     procedure actRelatorioAlunosExecute(Sender: TObject);
     procedure actCadastroFuncionarioExecute(Sender: TObject);
+    procedure actProntuarioExecute(Sender: TObject);
+    procedure ExportarExcel1Click(Sender: TObject);
+    procedure btnEnviarEmailClick(Sender: TObject);
+    procedure cbExibirAcompanhamentoClick(Sender: TObject);
   private
     procedure AtualizaTela;
 
@@ -105,7 +115,8 @@ var
 implementation
 
 uses
-  uCadastroAluno, uCadastroCandidato, uCadastroParametros,uAcompanhamento,uCadastroBase, uRelatorioAlunos, uCadastroFuncionario;
+  uCadastroAluno, uCadastroCandidato, uCadastroParametros,uAcompanhamento,uCadastroBase,
+  uRelatorioAlunos, uCadastroFuncionario, uRelatorioProntuario;
 
 {$R *.dfm}
 
@@ -114,29 +125,29 @@ var
   frmAcompanhamento: TfrmAcompanhamento;
 begin
   frmAcompanhamento := TfrmAcompanhamento.create(self);
-  frmAcompanhamento.ShowModal;
-  frmAcompanhamento.Free;
-  dm_principal.cdsProximosRetornos.Close;
-  dm_principal.cdsProximosRetornos.Open;
-
+  frmAcompanhamento.Show;
+  cbExibirAcompanhamento.Checked := False;
 end;
 
 procedure TfrmPrincipal.actAlunosExecute(Sender: TObject);
 var
   frmCadastroAluno: TfrmCadastroAluno;
 begin
+  cbExibirAcompanhamento.Checked := False;
   frmCadastroAluno := TfrmCadastroAluno.create(self);
-  frmCadastroAluno.ShowModal;
-  frmCadastroAluno.Free;
+  frmCadastroAluno.ModoBuscar := False;
+  frmCadastroAluno.Show;
 end;
 
 procedure TfrmPrincipal.actCadastroFuncionarioExecute(Sender: TObject);
 var
   frmCadastroFuncionario: TfrmCadastroFuncionario;
 begin
+  cbExibirAcompanhamento.Checked := False;
   frmCadastroFuncionario := TfrmCadastroFuncionario.create(self);
-  frmCadastroFuncionario.ShowModal;
-  frmCadastroFuncionario.Free;
+  //frmCadastroFuncionario.ModoBuscar := true;
+  frmCadastroFuncionario.Show;
+//  frmCadastroFuncionario.Free;
 
 end;
 
@@ -144,32 +155,39 @@ procedure TfrmPrincipal.actCandidatosExecute(Sender: TObject);
 var
   frmCadastroCandidato: TfrmCadastroCandidato;
 begin
-  frmCadastroCandidato := TfrmCadastroCandidato.create(self);
-  frmCadastroCandidato.ShowModal;
-  frmCadastroCandidato.Free;
 
+  cbExibirAcompanhamento.Checked := False;
+  frmCadastroCandidato := TfrmCadastroCandidato.create(self);
+  frmCadastroCandidato.Show;
 end;
 
 procedure TfrmPrincipal.actParametrosExecute(Sender: TObject);
 var
   frmCadastroParametros: TfrmCadastroParametros;
 begin
+  cbExibirAcompanhamento.Checked := False;
   frmCadastroParametros := TfrmCadastroParametros.create(self);
-  frmCadastroParametros.ShowModal;
-  frmCadastroParametros.Free;
+  frmCadastroParametros.Show;
   DM_Principal.CarregarParametros('');
   AtualizaTela;
+end;
 
+procedure TfrmPrincipal.actProntuarioExecute(Sender: TObject);
+var
+  frmProntuario: TfrmProntuario;
+begin
+  cbExibirAcompanhamento.Checked := False;
+  frmProntuario := TfrmProntuario.create(self);
+  frmProntuario.Show;
 end;
 
 procedure TfrmPrincipal.actRelatorioAlunosExecute(Sender: TObject);
 var
   FrmRelatorioAlunos: TFrmRelatorioAlunos;
 begin
+  cbExibirAcompanhamento.Checked := False;
   FrmRelatorioAlunos := TFrmRelatorioAlunos.create(self);
-  FrmRelatorioAlunos.ShowModal;
-  FrmRelatorioAlunos.Free;
-
+  FrmRelatorioAlunos.Show;
 end;
 
 procedure TfrmPrincipal.actSairExecute(Sender: TObject);
@@ -204,6 +222,43 @@ begin
   dm_principal.AtualizarVersao;
 end;
 
+procedure TfrmPrincipal.cbExibirAcompanhamentoClick(Sender: TObject);
+begin
+  gridProximosRetornos.Visible := cbExibirAcompanhamento.Checked;
+
+  if cbExibirAcompanhamento.Checked then begin
+    dm_principal.cdsProximosRetornos.Close;
+    dm_principal.cdsProximosRetornos.Open;
+  end;
+
+end;
+
+procedure TfrmPrincipal.btnEnviarEmailClick(Sender: TObject);
+begin
+DM_Principal.EnviarEmail('',
+                         '',
+                         'mablesaaf@gmail.com',
+                         'teste',
+                         'teste');
+
+end;
+
+procedure TfrmPrincipal.ExportarExcel1Click(Sender: TObject);
+  var saveDialog : TSaveDialog;
+begin
+  inherited;
+
+   saveDialog := TSaveDialog.Create(self);
+   saveDialog.Filter := 'Excel |*.xls';
+   saveDialog.DefaultExt := 'xls';
+   saveDialog.FilterIndex := 1;
+   if saveDialog.Execute then
+     ExportGridToExcel(saveDialog.FileName , TcxGrid(ppMenu.PopupComponent) , False);
+
+   saveDialog.Free;
+
+end;
+
 procedure TfrmPrincipal.rbMenuPrincipalTabChanged(Sender: TdxCustomRibbon);
 var
   I: Integer;
@@ -215,18 +270,16 @@ begin
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
-var frmLogin : TfrmLogin;
+var
 sCaminho : String;
+frmLogin : TfrmLogin;
 begin
+
   DM_Principal.NomeExe := Application.ExeName;
   DM_Principal.CarregarParametros('');
 
   AtualizaTela;
 
-  frmLogin := TfrmLogin.Create(self);
-  frmLogin.ShowModal ;
-  if frmLogin.modalresult <> mrOk then
-    Application.Terminate;
 
   // Temporario
   if DM_Principal.VersaoExecutavel <> DM_Principal.VersaoSistema then
@@ -237,6 +290,14 @@ begin
     //ShowMessage('Versão desatualizada, entre em contato com o suporte.');
     //Application.Terminate;
   end;
+
+  rbMenuPrincipal.Tabs[0].Active := true;
+
+
+  frmLogin := TfrmLogin.Create(self);
+  frmLogin.ShowModal ;
+  if frmLogin.modalresult <> mrOk then
+    Application.Terminate;
 
 end;
 

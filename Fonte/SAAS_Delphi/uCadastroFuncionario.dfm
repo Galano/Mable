@@ -1,29 +1,31 @@
 inherited frmCadastroFuncionario: TfrmCadastroFuncionario
   Caption = 'Funcion'#225'rio'
-  ClientHeight = 358
-  ExplicitHeight = 397
+  ClientHeight = 521
+  ClientWidth = 798
+  ExplicitWidth = 814
+  ExplicitHeight = 560
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlDadosPesquisa: TcxGroupBox
     ExplicitHeight = 31
     Height = 31
+    Width = 798
   end
   inherited pcControleTela: TcxPageControl
     Top = 89
-    Height = 269
-    ExplicitTop = 113
-    ExplicitHeight = 245
-    ClientRectBottom = 267
+    Width = 798
+    Height = 432
+    Properties.ActivePage = tsDetalhe
+    ExplicitTop = 89
+    ExplicitHeight = 269
+    ClientRectBottom = 430
+    ClientRectRight = 796
     inherited tsDados: TcxTabSheet
-      ExplicitLeft = 2
-      ExplicitTop = 26
-      ExplicitWidth = 734
-      ExplicitHeight = 217
+      ExplicitHeight = 241
       inherited cxGridBase: TcxGrid
-        Width = 734
-        Height = 241
-        ExplicitWidth = 734
-        ExplicitHeight = 217
+        Width = 794
+        Height = 404
+        ExplicitHeight = 241
         inherited vwGridBase: TcxGridDBTableView
           object vwGridBasePESSOA: TcxGridDBColumn
             Caption = 'ID'
@@ -95,30 +97,30 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
       ExplicitLeft = 2
       ExplicitTop = 26
       ExplicitWidth = 734
-      ExplicitHeight = 217
+      ExplicitHeight = 241
       object pcDetalheCandidato: TcxPageControl
         Left = 0
         Top = 0
-        Width = 734
-        Height = 241
+        Width = 794
+        Height = 404
         Align = alClient
         TabOrder = 0
-        Properties.ActivePage = tsEdereco1
+        Properties.ActivePage = tsAcessoSistema
         Properties.CustomButtons.Buttons = <>
         LookAndFeel.NativeStyle = False
-        ExplicitHeight = 217
-        ClientRectBottom = 239
+        ExplicitLeft = -3
+        ClientRectBottom = 402
         ClientRectLeft = 2
-        ClientRectRight = 732
+        ClientRectRight = 792
         ClientRectTop = 26
         object tsFuncionario: TcxTabSheet
           Caption = 'Funcionario'
           ImageIndex = 0
-          ExplicitLeft = 3
-          ExplicitHeight = 189
+          ExplicitLeft = -30
+          ExplicitTop = 34
           DesignSize = (
-            730
-            213)
+            790
+            376)
           object Label2: TLabel
             Left = 167
             Top = 51
@@ -127,8 +129,8 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             Caption = 'CPF'
           end
           object Label3: TLabel
-            Left = 11
-            Top = 52
+            Left = 12
+            Top = 51
             Width = 23
             Height = 13
             Caption = 'RG *'
@@ -143,7 +145,7 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             FocusControl = cxDBTextEdit3
           end
           object Label6: TLabel
-            Left = 72
+            Left = 80
             Top = 5
             Width = 36
             Height = 13
@@ -151,7 +153,7 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             FocusControl = edtNome
           end
           object Label7: TLabel
-            Left = 584
+            Left = 644
             Top = 104
             Width = 59
             Height = 13
@@ -159,16 +161,16 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             Caption = 'Dt.Cadastro'
             Enabled = False
             FocusControl = cxDBDateEdit1
+            ExplicitLeft = 584
           end
           object Label8: TLabel
-            Left = 584
-            Top = 5
+            Left = 632
+            Top = 8
             Width = 79
             Height = 13
             Anchors = [akTop, akRight]
             Caption = 'Dt.Nascimento *'
             FocusControl = cxDBDateEdit2
-            ExplicitLeft = 507
           end
           object Label11: TLabel
             Left = 11
@@ -205,10 +207,10 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             StyleFocused.LookAndFeel.NativeStyle = False
             StyleHot.LookAndFeel.NativeStyle = False
             TabOrder = 5
-            Width = 533
+            Width = 593
           end
           object edtNome: TcxDBTextEdit
-            Left = 72
+            Left = 78
             Top = 24
             Anchors = [akLeft, akTop, akRight]
             DataBinding.DataField = 'NOME'
@@ -220,10 +222,10 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             StyleFocused.LookAndFeel.NativeStyle = False
             StyleHot.LookAndFeel.NativeStyle = False
             TabOrder = 1
-            Width = 459
+            Width = 548
           end
           object cxDBDateEdit1: TcxDBDateEdit
-            Left = 584
+            Left = 644
             Top = 120
             Anchors = [akTop, akRight]
             DataBinding.DataField = 'DATA_CADASTRO'
@@ -239,8 +241,8 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             Width = 132
           end
           object cxDBDateEdit2: TcxDBDateEdit
-            Left = 584
-            Top = 21
+            Left = 632
+            Top = 24
             Anchors = [akTop, akRight]
             DataBinding.DataField = 'DTNASCIMENTO'
             DataBinding.DataSource = dm_principal.dsFuncionario
@@ -255,7 +257,6 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
           object cxDBMaskEdit1: TcxDBMaskEdit
             Left = 167
             Top = 68
-            Anchors = [akLeft, akTop, akRight]
             DataBinding.DataField = 'CPF_CNPJ'
             DataBinding.DataSource = dm_principal.dsPessoa
             Properties.EditMask = '999.999.999-99;1;_'
@@ -265,12 +266,11 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             StyleFocused.LookAndFeel.NativeStyle = False
             StyleHot.LookAndFeel.NativeStyle = False
             TabOrder = 4
-            Width = 136
+            Width = 196
           end
           object cxDBTextEdit4: TcxDBTextEdit
             Left = 12
-            Top = 21
-            Anchors = [akLeft, akTop, akRight]
+            Top = 24
             DataBinding.DataField = 'PESSOA'
             DataBinding.DataSource = dm_principal.dsFuncionario
             Enabled = False
@@ -281,38 +281,21 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             StyleFocused.LookAndFeel.NativeStyle = False
             StyleHot.LookAndFeel.NativeStyle = False
             TabOrder = 0
-            Width = 0
-          end
-          object cxDBTextEdit1: TcxDBTextEdit
-            Left = 11
-            Top = 24
-            Anchors = [akLeft, akTop, akRight]
-            DataBinding.DataField = 'FUNCIONARIO'
-            DataBinding.DataSource = dm_principal.dsFuncionario
-            Properties.MaxLength = 100
-            Style.LookAndFeel.NativeStyle = False
-            StyleDisabled.LookAndFeel.NativeStyle = False
-            StyleFocused.BorderColor = clHighlight
-            StyleFocused.LookAndFeel.NativeStyle = False
-            StyleHot.LookAndFeel.NativeStyle = False
-            TabOrder = 7
-            Width = 48
+            Width = 60
           end
         end
         object tsContatos: TcxTabSheet
           Caption = 'Contatos'
           ImageIndex = 2
-          ExplicitHeight = 189
           object gridContatos: TcxGrid
             Left = 0
             Top = 30
-            Width = 730
-            Height = 183
+            Width = 790
+            Height = 346
             Align = alClient
             PopupMenu = ppMenu
             TabOrder = 1
             LookAndFeel.NativeStyle = False
-            ExplicitHeight = 159
             object vwContatos: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               DataController.DataSource = dm_principal.dsContato
@@ -366,14 +349,14 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
           object pnlContatosDireito: TPanel
             Left = 0
             Top = 0
-            Width = 730
+            Width = 790
             Height = 30
             Align = alTop
             TabOrder = 0
             object ToolBar1: TToolBar
               Left = 1
               Top = 1
-              Width = 728
+              Width = 788
               Height = 30
               ButtonHeight = 30
               ButtonWidth = 31
@@ -419,11 +402,12 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
         object tsEdereco1: TcxTabSheet
           Caption = 'Endere'#231'o'
           ImageIndex = 3
-          ExplicitHeight = 189
+          ExplicitWidth = 730
+          ExplicitHeight = 213
           object ToolBar2: TToolBar
             Left = 0
             Top = 0
-            Width = 730
+            Width = 790
             Height = 30
             ButtonHeight = 30
             ButtonWidth = 31
@@ -432,6 +416,7 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             HotImages = dm_principal.ImgBotoesCX
             Images = dm_principal.ImgBotoesCX
             TabOrder = 0
+            ExplicitWidth = 730
             object btnEnderecoNovo: TToolButton
               Left = 0
               Top = 0
@@ -467,15 +452,14 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
           object cxGrid1: TcxGrid
             Left = 0
             Top = 30
-            Width = 730
-            Height = 183
+            Width = 790
+            Height = 346
             Align = alClient
             PopupMenu = ppMenu
             TabOrder = 1
             LookAndFeel.NativeStyle = False
-            ExplicitLeft = 3
-            ExplicitTop = 36
-            ExplicitHeight = 159
+            ExplicitWidth = 730
+            ExplicitHeight = 183
             object cxGridDBTableView1: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               DataController.DataModeController.GridMode = True
@@ -571,12 +555,100 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
             end
           end
         end
+        object tsAcessoSistema: TcxTabSheet
+          Caption = 'Usuario Sistema'
+          ImageIndex = 3
+          ExplicitLeft = 1
+          object Label1: TLabel
+            Left = 20
+            Top = 11
+            Width = 25
+            Height = 13
+            Caption = 'Login'
+          end
+          object Label5: TLabel
+            Left = 20
+            Top = 67
+            Width = 30
+            Height = 13
+            Caption = 'Senha'
+          end
+          object Label9: TLabel
+            Left = 20
+            Top = 118
+            Width = 29
+            Height = 13
+            Caption = 'Grupo'
+          end
+          object cxDBTextEdit5: TcxDBTextEdit
+            Left = 20
+            Top = 27
+            DataBinding.DataField = 'USR_LOGIN'
+            DataBinding.DataSource = dm_principal.dsUsuarios
+            Properties.CharCase = ecUpperCase
+            Properties.MaxLength = 15
+            Style.LookAndFeel.NativeStyle = False
+            StyleDisabled.LookAndFeel.NativeStyle = False
+            StyleFocused.BorderColor = clHighlight
+            StyleFocused.LookAndFeel.NativeStyle = False
+            StyleHot.LookAndFeel.NativeStyle = False
+            TabOrder = 0
+            Width = 150
+          end
+          object cxDBTextEdit1: TcxDBTextEdit
+            Left = 20
+            Top = 83
+            DataBinding.DataField = 'USR_SENHA'
+            DataBinding.DataSource = dm_principal.dsUsuarios
+            Properties.CharCase = ecUpperCase
+            Properties.EchoMode = eemPassword
+            Properties.MaxLength = 15
+            Properties.PasswordChar = '*'
+            Style.HotTrack = True
+            Style.LookAndFeel.NativeStyle = False
+            StyleDisabled.LookAndFeel.NativeStyle = False
+            StyleFocused.BorderColor = clHighlight
+            StyleFocused.LookAndFeel.NativeStyle = False
+            StyleHot.LookAndFeel.NativeStyle = False
+            TabOrder = 1
+            Width = 150
+          end
+          object cxDBLookupComboBox1: TcxDBLookupComboBox
+            Left = 20
+            Top = 136
+            DataBinding.DataField = 'GRUPOACESSO'
+            DataBinding.DataSource = dm_principal.dsUsuarios
+            Properties.DropDownListStyle = lsFixedList
+            Properties.KeyFieldNames = 'GRUPOACESSO'
+            Properties.ListColumns = <
+              item
+                FieldName = 'NOME'
+              end>
+            Properties.ListSource = dm_principal.dsGrupoAcesso
+            Style.LookAndFeel.NativeStyle = False
+            StyleDisabled.LookAndFeel.NativeStyle = False
+            StyleFocused.LookAndFeel.NativeStyle = False
+            StyleHot.LookAndFeel.NativeStyle = False
+            TabOrder = 2
+            Width = 145
+          end
+          object cxDBCheckBox1: TcxDBCheckBox
+            Left = 20
+            Top = 176
+            Caption = 'Ativo'
+            DataBinding.DataField = 'SITUACAO'
+            DataBinding.DataSource = dm_principal.dsUsuarios
+            Properties.ValueChecked = 1
+            Properties.ValueUnchecked = 0
+            TabOrder = 3
+          end
+        end
       end
     end
   end
   inherited ActionList1: TActionList
-    Left = 152
-    Top = 312
+    Left = 344
+    Top = 240
     inherited actNovo: TAction
       Category = 'Tela'
     end
@@ -662,8 +734,8 @@ inherited frmCadastroFuncionario: TfrmCadastroFuncionario
     end
   end
   inherited dxBarManager1: TdxBarManager
-    Left = 208
-    Top = 304
+    Left = 400
+    Top = 232
     PixelsPerInch = 96
   end
   inherited dsBase: TDataSource

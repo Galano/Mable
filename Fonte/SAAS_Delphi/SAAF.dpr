@@ -15,7 +15,8 @@ uses
   uRelatorioAlunos in 'uRelatorioAlunos.pas' {frmRelatorioAlunos},
   uLogin in 'uLogin.pas' {frmLogin},
   uRelatorioCandidatos in 'uRelatorioCandidatos.pas' {frmRelatorioCandidatos},
-  uCadastroFuncionario in 'uCadastroFuncionario.pas' {frmCadastroFuncionario};
+  uCadastroFuncionario in 'uCadastroFuncionario.pas' {frmCadastroFuncionario},
+  uRelatorioProntuario in 'uRelatorioProntuario.pas' {frmProntuario};
 
 {$R *.res}
 
@@ -24,7 +25,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm_principal, dm_principal);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmCadastroFuncionario, frmCadastroFuncionario);
   Application.Run;
 end.

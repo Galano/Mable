@@ -21,7 +21,7 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, Vcl.Menus, cxLabel, Vcl.StdCtrls, cxButtons, cxTextEdit,
-  cxGroupBox;
+  uDM_Principal, cxGroupBox;
 
 type
   TfrmLogin = class(TForm)
@@ -34,6 +34,7 @@ type
     cxButton1: TcxButton;
     procedure FormCreate(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
+    procedure cxButton1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,14 +50,25 @@ implementation
 
 procedure TfrmLogin.btnLoginClick(Sender: TObject);
 begin
-  if not (edtUsuario.Text = 'admin')
-     and (edtSenha.Text = 'admin') then
+  DM_Principal.sqlValidaLogin.Close;
+  DM_Principal.sqlValidaLogin.Params.ParamByName('USR_LOGIN').AsString :=  edtUsuario.Text;
+  DM_Principal.sqlValidaLogin.Params.ParamByName('USR_SENHA').AsString :=  edtSenha.Text;
+  DM_Principal.sqlValidaLogin.Open;
+
+  //finalizar controle de permissoes
+
+  if (DM_Principal.sqlValidaLogin.RecordCount = 0)  or (DM_Principal.sqlValidaLoginGRUPOACESSO.IsNull) then
   begin
     ShowMessage('Usuário ou senha inválidos');
     abort;
-
   end;
   ModalResult := mrOk;
+end;
+
+procedure TfrmLogin.cxButton1Click(Sender: TObject);
+begin
+ Application.Terminate;
+
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);

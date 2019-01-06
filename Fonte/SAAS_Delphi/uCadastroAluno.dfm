@@ -1,52 +1,59 @@
 inherited frmCadastroAluno: TfrmCadastroAluno
-  Caption = 'Aluno'
-  ClientHeight = 377
-  ClientWidth = 836
-  ExplicitWidth = 852
-  ExplicitHeight = 416
+  Caption = 'Usuario'
+  ClientHeight = 477
+  ClientWidth = 853
+  ExplicitWidth = 869
+  ExplicitHeight = 516
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlDadosPesquisa: TcxGroupBox
-    ExplicitWidth = 836
+    ExplicitWidth = 835
     ExplicitHeight = 38
     Height = 38
-    Width = 836
+    Width = 853
     inherited rgTipoConsulta: TRadioGroup
       Width = 176
       Height = 32
       Items.Strings = (
         'Nome'
         'Matricula')
+      OnClick = rgTipoConsultaClick
       ExplicitWidth = 176
       ExplicitHeight = 32
     end
     inherited edtConsulta: TcxTextEdit
-      Left = 187
-      Top = 12
-      ExplicitLeft = 187
-      ExplicitTop = 12
+      Left = 203
+      Top = 11
+      OnKeyPress = edtConsultaKeyPress
+      ExplicitLeft = 203
+      ExplicitTop = 11
     end
   end
   inherited pcControleTela: TcxPageControl
     Top = 96
-    Width = 836
-    Height = 281
+    Width = 853
+    Height = 381
     TabOrder = 1
+    Properties.ActivePage = tsDados
     ExplicitTop = 96
-    ExplicitWidth = 836
-    ExplicitHeight = 281
-    ClientRectBottom = 279
-    ClientRectRight = 834
+    ExplicitWidth = 835
+    ExplicitHeight = 381
+    ClientRectBottom = 379
+    ClientRectRight = 851
     inherited tsDados: TcxTabSheet
-      Caption = 'Alunos'
-      ExplicitWidth = 832
-      ExplicitHeight = 362
+      Caption = 'Usuario'
+      ExplicitLeft = 2
+      ExplicitTop = 26
+      ExplicitWidth = 831
+      ExplicitHeight = 353
       inherited cxGridBase: TcxGrid
-        Width = 832
-        Height = 253
-        ExplicitWidth = 832
-        ExplicitHeight = 362
+        Width = 849
+        Height = 353
+        ExplicitWidth = 831
+        ExplicitHeight = 353
         inherited vwGridBase: TcxGridDBTableView
+          OnCellClick = vwGridBaseCellClick
+          DataController.DataModeController.GridMode = True
           DataController.Summary.FooterSummaryItems = <
             item
               Kind = skCount
@@ -73,107 +80,236 @@ inherited frmCadastroAluno: TfrmCadastroAluno
     end
     inherited tsDetalhe: TcxTabSheet
       Caption = 'Dados Cadastrais'
-      ExplicitWidth = 832
-      ExplicitHeight = 253
+      ExplicitWidth = 831
+      ExplicitHeight = 353
       inherited pcDetalheCandidato: TcxPageControl
-        Width = 832
-        Height = 253
-        Properties.ActivePage = tsNecessidades
-        ExplicitWidth = 832
-        ExplicitHeight = 253
-        ClientRectBottom = 251
-        ClientRectRight = 830
+        Width = 849
+        Height = 353
+        Properties.ActivePage = cxTabSheet2
+        ExplicitWidth = 831
+        ExplicitHeight = 353
+        ClientRectBottom = 351
+        ClientRectRight = 847
         inherited tsCandidato: TcxTabSheet
-          ExplicitLeft = 3
-          ExplicitTop = 0
-          ExplicitWidth = 828
-          ExplicitHeight = 334
-          inherited Label3: TLabel
-            Left = 11
-            ExplicitLeft = 11
-          end
-          inherited Label7: TLabel
-            Left = 682
-            ExplicitLeft = 682
-          end
-          inherited Label8: TLabel
-            Left = 682
-            ExplicitLeft = 507
-          end
-          inherited Label1: TLabel
-            Left = 11
-            ExplicitLeft = 11
-          end
-          inherited Label5: TLabel
-            Left = 405
-            ExplicitLeft = 405
-          end
+          ExplicitLeft = -94
+          ExplicitTop = 130
+          ExplicitWidth = 845
+          ExplicitHeight = 325
           inherited cxDBTextEdit2: TcxDBTextEdit
-            Left = 11
-            ExplicitLeft = 11
+            TabOrder = 0
           end
           inherited cxDBTextEdit3: TcxDBTextEdit
-            ExplicitWidth = 631
-            Width = 631
+            TabOrder = 1
+          end
+          inherited edtNome: TcxDBTextEdit
+            TabOrder = 2
           end
           inherited cxDBDateEdit1: TcxDBDateEdit
-            Left = 682
-            ExplicitLeft = 682
+            TabOrder = 3
           end
           inherited cxDBDateEdit2: TcxDBDateEdit
-            Left = 682
-            ExplicitLeft = 682
+            TabOrder = 4
           end
           inherited cxDBMaskEdit1: TcxDBMaskEdit
-            ExplicitWidth = 234
-            Width = 234
+            TabOrder = 5
           end
-          inherited cxDBTextEdit1: TcxDBTextEdit
-            Left = 11
-            Top = 120
-            ExplicitLeft = 11
-            ExplicitTop = 120
+          inherited cxDBTextEdit5: TcxDBTextEdit
+            TabOrder = 7
+          end
+          inherited cbGenero: TcxDBImageComboBox
+            TabOrder = 8
           end
           inherited cxDBTextEdit4: TcxDBTextEdit
-            ExplicitWidth = 46
-            Width = 46
+            TabOrder = 9
+          end
+          inherited edtResponsavel: TcxDBTextEdit
+            TabOrder = 10
+          end
+          inherited edtParentesco: TcxDBTextEdit
+            TabOrder = 11
+          end
+          inherited cxDBTextEdit6: TcxDBTextEdit
+            TabOrder = 12
+          end
+          inherited cxDBTextEdit7: TcxDBTextEdit
+            TabOrder = 13
+          end
+          inherited edtImage: TcxDBImage
+            TabOrder = 14
+          end
+          inherited btnCarregarFoto: TcxButton
+            TabOrder = 15
+          end
+          inherited btnLimparFoto: TcxButton
+            TabOrder = 16
+          end
+          inherited cxDBTextEdit8: TcxDBTextEdit
+            TabOrder = 17
+          end
+          inherited cxDBDateEdit3: TcxDBDateEdit
+            TabOrder = 18
+          end
+          inherited cxDBDateEdit4: TcxDBDateEdit
+            TabOrder = 19
+          end
+          inherited cxDBTextEdit22: TcxDBTextEdit
+            TabOrder = 20
+          end
+          inherited cxDBTextEdit24: TcxDBTextEdit
+            TabOrder = 21
           end
         end
         inherited tsContatos: TcxTabSheet
-          ExplicitWidth = 828
-          ExplicitHeight = 334
+          ExplicitLeft = 2
+          ExplicitTop = 26
+          ExplicitWidth = 827
+          ExplicitHeight = 325
           inherited gridContatos: TcxGrid
-            Width = 828
-            Height = 195
-            ExplicitWidth = 828
-            ExplicitHeight = 304
+            Width = 845
+            Height = 295
+            ExplicitWidth = 827
+            ExplicitHeight = 295
           end
           inherited pnlContatosDireito: TPanel
-            Width = 828
-            ExplicitWidth = 828
+            Width = 845
+            ExplicitWidth = 827
             inherited ToolBar1: TToolBar
-              Width = 826
-              ExplicitWidth = 826
+              Width = 843
+              ExplicitWidth = 825
             end
           end
         end
         inherited tsEdereco1: TcxTabSheet
-          ExplicitWidth = 828
-          ExplicitHeight = 334
+          ExplicitLeft = 2
+          ExplicitTop = 26
+          ExplicitWidth = 827
+          ExplicitHeight = 325
           inherited ToolBar2: TToolBar
-            Width = 828
-            ExplicitWidth = 828
+            Width = 845
+            ExplicitWidth = 827
           end
           inherited cxGrid1: TcxGrid
-            Width = 828
-            Height = 195
-            ExplicitWidth = 828
-            ExplicitHeight = 304
+            Width = 845
+            Height = 295
+            ExplicitWidth = 827
+            ExplicitHeight = 295
           end
         end
         inherited tsNecessidades: TcxTabSheet
-          ExplicitWidth = 828
-          ExplicitHeight = 225
+          ExplicitLeft = 2
+          ExplicitTop = 26
+          ExplicitWidth = 827
+          ExplicitHeight = 325
+          inherited gridNecessidades: TcxGrid
+            Width = 845
+            Height = 295
+            ExplicitWidth = 827
+            ExplicitHeight = 295
+          end
+          inherited ToolBar3: TToolBar
+            Width = 845
+            ExplicitWidth = 827
+          end
+        end
+        inherited tsProntuario: TcxTabSheet
+          ExplicitLeft = 2
+          ExplicitTop = 26
+          ExplicitWidth = 827
+          ExplicitHeight = 325
+          inherited DBMemo1: TDBMemo
+            Width = 845
+            Height = 325
+            ExplicitWidth = 827
+            ExplicitHeight = 325
+          end
+        end
+        inherited tsMedico: TcxTabSheet
+          ExplicitWidth = 827
+          ExplicitHeight = 325
+          inherited cxGroupBox1: TcxGroupBox
+            ExplicitWidth = 827
+            Width = 845
+            inherited cxLabel2: TcxLabel
+              AnchorX = 55
+            end
+            inherited cxDBTextEdit9: TcxDBTextEdit
+              ExplicitWidth = 388
+              Width = 406
+            end
+            inherited cxDBTextEdit11: TcxDBTextEdit
+              ExplicitWidth = 388
+              Width = 406
+            end
+          end
+          inherited cxGroupBox2: TcxGroupBox
+            ExplicitWidth = 827
+            Width = 845
+            inherited Label25: TLabel
+              Left = 560
+              ExplicitLeft = 542
+            end
+            inherited cxDBTextEdit17: TcxDBTextEdit
+              ExplicitWidth = 524
+              Width = 542
+            end
+            inherited cxDBTextEdit18: TcxDBTextEdit
+              ExplicitWidth = 492
+              Width = 510
+            end
+            inherited cxDBTextEdit19: TcxDBTextEdit
+              Left = 578
+              ExplicitLeft = 560
+            end
+          end
+          inherited cxGroupBox5: TcxGroupBox
+            ExplicitWidth = 827
+            Width = 845
+            inherited cxDBTextEdit12: TcxDBTextEdit
+              ExplicitWidth = 314
+              Width = 332
+            end
+          end
+          inherited cxGroupBox11: TcxGroupBox
+            ExplicitWidth = 827
+            Width = 845
+          end
+        end
+        inherited cxTabSheet1: TcxTabSheet
+          ExplicitWidth = 827
+          ExplicitHeight = 325
+          inherited cxGroupBox6: TcxGroupBox
+            Top = 53
+            TabOrder = 0
+            ExplicitWidth = 845
+            Width = 845
+          end
+          inherited cxGroupBox4: TcxGroupBox
+            Top = 166
+            ExplicitWidth = 845
+            Width = 845
+          end
+          inherited cxGroupBox3: TcxGroupBox
+            TabOrder = 2
+            ExplicitWidth = 845
+            Width = 845
+          end
+          inherited cxGroupBox7: TcxGroupBox
+            Top = 116
+            TabOrder = 3
+            ExplicitWidth = 845
+            Width = 845
+          end
+          inherited GroupBox1: TGroupBox
+            Width = 845
+            inherited cxGroupBox10: TcxGroupBox
+              ExplicitWidth = 369
+              Width = 369
+            end
+          end
+        end
+        inherited cxTabSheet2: TcxTabSheet
+          ExplicitWidth = 827
+          ExplicitHeight = 325
         end
       end
     end
@@ -200,20 +336,40 @@ inherited frmCadastroAluno: TfrmCadastroAluno
   end
   inherited dsBase: TDataSource
     DataSet = cdsTelaAluno
-    Left = 600
-    Top = 304
+    Left = 784
+    Top = 8
   end
   inherited ppRelatorioBase: TppReport
     DataPipelineName = 'ppDbBase'
     inherited ppTituloRelatorio: TppHeaderBand
-      inherited ppImage2: TppImage
-        LayerName = Foreground
-      end
-      inherited ppLabel1: TppLabel
+      inherited ppLabel3: TppLabel [0]
         SaveOrder = -1
         LayerName = Foreground
       end
-      inherited ppLine1: TppLine
+      inherited ppLabel4: TppLabel [1]
+        SaveOrder = -1
+        LayerName = Foreground
+      end
+      inherited ppLabel5: TppLabel [2]
+        SaveOrder = -1
+        LayerName = Foreground
+      end
+      inherited ppVariable1: TppVariable [3]
+        SaveOrder = -1
+        LayerName = Foreground
+      end
+      inherited ppLabel6: TppLabel [4]
+        SaveOrder = -1
+        LayerName = Foreground
+      end
+      inherited ppImage2: TppImage [5]
+        LayerName = Foreground
+      end
+      inherited ppLabel1: TppLabel [6]
+        SaveOrder = -1
+        LayerName = Foreground
+      end
+      inherited ppLine1: TppLine [7]
         LayerName = Foreground
       end
     end
@@ -267,8 +423,8 @@ inherited frmCadastroAluno: TfrmCadastroAluno
         Value = 'a'
       end>
     ProviderName = 'dspTelaAluno'
-    Left = 600
-    Top = 336
+    Left = 784
+    Top = 40
     object cdsTelaAlunoPESSOA: TIntegerField
       FieldName = 'PESSOA'
     end
@@ -323,15 +479,22 @@ inherited frmCadastroAluno: TfrmCadastroAluno
     end
     object cdsTelaAlunoIDADE: TIntegerField
       FieldName = 'IDADE'
+      ProviderFlags = []
     end
     object cdsTelaAlunoCEP: TStringField
       FieldName = 'CEP'
       Size = 11
     end
+    object cdsTelaAlunoALUNO: TAutoIncField
+      FieldName = 'ALUNO'
+      Origin = 'ALUNO'
+      ProviderFlags = [pfInWhere]
+      ReadOnly = True
+    end
   end
   object dspTelaAluno: TDataSetProvider
     DataSet = dm_principal.sqlTelaAluno
-    Left = 600
-    Top = 368
+    Left = 784
+    Top = 72
   end
 end

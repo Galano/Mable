@@ -2,7 +2,7 @@ object dm_principal: Tdm_principal
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 1092
-  Width = 745
+  Width = 1024
   object stlrPadrao: TcxStyleRepository
     Left = 376
     Top = 16
@@ -135,7 +135,7 @@ object dm_principal: Tdm_principal
     Left = 280
     Top = 16
     Bitmap = {
-      494C01012400C803C00618001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
+      494C01012400C803F00618001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000F000000001002000000000000068
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3119,7 +3119,7 @@ object dm_principal: Tdm_principal
     Left = 160
     Top = 16
     Bitmap = {
-      494C01012300E403FC0618001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
+      494C01012300E4032C0718001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000D800000001002000000000000044
       010000000000000000000000000000000000D8E9EC00D8E9EC00D8E9EC00D8E9
       EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9
@@ -5806,7 +5806,7 @@ object dm_principal: Tdm_principal
     Left = 72
     Top = 16
     Bitmap = {
-      494C01012300E403FC0618001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
+      494C01012300E4032C0718001800ECE9D800FF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000D800000001002000000000000044
       010000000000000000000000000000000000D8E9EC00D8E9EC00D8E9EC00D8E9
       EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9EC00D8E9
@@ -8609,6 +8609,50 @@ object dm_principal: Tdm_principal
     object cdsCandidatoGENERO: TIntegerField
       FieldName = 'GENERO'
     end
+    object cdsCandidatoPARENTESCO: TStringField
+      FieldName = 'PARENTESCO'
+      Size = 100
+    end
+    object cdsCandidatoENCAMINHADO: TStringField
+      FieldName = 'ENCAMINHADO'
+      Size = 100
+    end
+    object cdsCandidatoPROCEDENCIA: TStringField
+      FieldName = 'PROCEDENCIA'
+      Size = 100
+    end
+    object cdsCandidatoFOTO: TBlobField
+      FieldName = 'FOTO'
+    end
+    object cdsCandidatoRESPONSAVEL: TStringField
+      FieldName = 'RESPONSAVEL'
+      Size = 255
+    end
+    object cdsCandidatoPRONTUARIO: TMemoField
+      FieldName = 'PRONTUARIO'
+      BlobType = ftMemo
+      Size = 2147483647
+    end
+    object cdsCandidatoNIS: TStringField
+      FieldName = 'NIS'
+    end
+    object cdsCandidatoPAI_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'PAI_NASCIMENTO'
+    end
+    object cdsCandidatoMAE_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'MAE_NASCIMENTO'
+    end
+    object cdsCandidatoRESPONSAVEL_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'RESPONSAVEL_NASCIMENTO'
+    end
+    object cdsCandidatoPROFISSAO: TStringField
+      FieldName = 'PROFISSAO'
+      Size = 50
+    end
+    object cdsCandidatoESCOLARIDADE: TStringField
+      FieldName = 'ESCOLARIDADE'
+      Size = 50
+    end
   end
   object dsCandidato: TDataSource
     DataSet = cdsCandidato
@@ -8953,6 +8997,10 @@ object dm_principal: Tdm_principal
       ProviderFlags = []
       Size = 255
     end
+    object cdsAcompanhamentoEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 255
+    end
   end
   object dsAcompanhamento: TDataSource
     DataSet = cdsAcompanhamento
@@ -9011,6 +9059,7 @@ object dm_principal: Tdm_principal
       'User_Name=usr_saaf'
       'Password=comandos'
       'DriverID=MSSQL')
+    Connected = True
     LoginPrompt = False
     Left = 56
     Top = 80
@@ -9105,7 +9154,19 @@ object dm_principal: Tdm_principal
       ',NOME_MAE '
       ',ETINIA'
       ',GENERO'
-      ''
+      ',PARENTESCO'#9
+      ',ENCAMINHADO'#9
+      ',PROCEDENCIA'#9
+      ',FOTO'#9#9
+      ',RESPONSAVEL'
+      ',PRONTUARIO'
+      ',NIS'
+      #9
+      ',PAI_NASCIMENTO'#9#9
+      ',MAE_NASCIMENTO'#9#9
+      ',RESPONSAVEL_NASCIMENTO'
+      ',PROFISSAO'#9#9#9#9
+      ',ESCOLARIDADE'#9
       ''
       'FROM CANDIDATO WHERE PESSOA  = :PESSOA ')
     Left = 56
@@ -9158,6 +9219,62 @@ object dm_principal: Tdm_principal
     object sqlCandidatoGENERO: TIntegerField
       FieldName = 'GENERO'
       Origin = 'GENERO'
+    end
+    object sqlCandidatoPARENTESCO: TStringField
+      FieldName = 'PARENTESCO'
+      Origin = 'PARENTESCO'
+      Size = 100
+    end
+    object sqlCandidatoENCAMINHADO: TStringField
+      FieldName = 'ENCAMINHADO'
+      Origin = 'ENCAMINHADO'
+      Size = 100
+    end
+    object sqlCandidatoPROCEDENCIA: TStringField
+      FieldName = 'PROCEDENCIA'
+      Origin = 'PROCEDENCIA'
+      Size = 100
+    end
+    object sqlCandidatoFOTO: TBlobField
+      FieldName = 'FOTO'
+      Origin = 'FOTO'
+    end
+    object sqlCandidatoRESPONSAVEL: TStringField
+      FieldName = 'RESPONSAVEL'
+      Origin = 'RESPONSAVEL'
+      Size = 255
+    end
+    object sqlCandidatoPRONTUARIO: TMemoField
+      FieldName = 'PRONTUARIO'
+      Origin = 'PRONTUARIO'
+      BlobType = ftMemo
+      Size = 2147483647
+    end
+    object sqlCandidatoNIS: TStringField
+      FieldName = 'NIS'
+      Origin = 'NIS'
+    end
+    object sqlCandidatoPAI_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'PAI_NASCIMENTO'
+      Origin = 'PAI_NASCIMENTO'
+    end
+    object sqlCandidatoMAE_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'MAE_NASCIMENTO'
+      Origin = 'MAE_NASCIMENTO'
+    end
+    object sqlCandidatoRESPONSAVEL_NASCIMENTO: TSQLTimeStampField
+      FieldName = 'RESPONSAVEL_NASCIMENTO'
+      Origin = 'RESPONSAVEL_NASCIMENTO'
+    end
+    object sqlCandidatoPROFISSAO: TStringField
+      FieldName = 'PROFISSAO'
+      Origin = 'PROFISSAO'
+      Size = 50
+    end
+    object sqlCandidatoESCOLARIDADE: TStringField
+      FieldName = 'ESCOLARIDADE'
+      Origin = 'ESCOLARIDADE'
+      Size = 50
     end
   end
   object sqlAluno: TFDQuery
@@ -9375,6 +9492,8 @@ object dm_principal: Tdm_principal
       ',ACOMPANHAMENTO.OBSERVACOES'
       ',CANDIDATO.NOME'
       ',ACOMPANHAMENTO.DATARETORNO'
+      ',PESSOA.EMAIL'
+      ''
       'FROM ACOMPANHAMENTO'
       'INNER JOIN ALUNO'#9' ON ACOMPANHAMENTO.ALUNO = ALUNO.ALUNO'
       'INNER JOIN CANDIDATO ON CANDIDATO.CANDIDATO = ALUNO.CANDIDATO'
@@ -9439,6 +9558,11 @@ object dm_principal: Tdm_principal
       ProviderFlags = []
       Size = 255
     end
+    object sqlAcompanhamentoEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 255
+    end
   end
   object sqlListarAlunos: TFDQuery
     Connection = conSAAS1
@@ -9470,7 +9594,7 @@ object dm_principal: Tdm_principal
     SQL.Strings = (
       'DECLARE @MATRICULA INT = :MATRICULA'
       'DECLARE @NOME VARCHAR(255) = :NOME '
-      ''
+      ' '
       'SELECT '
       #9' PESSOA.PESSOA'#9#9#9
       #9',PESSOA.CPF_CNPJ'#9
@@ -9480,6 +9604,7 @@ object dm_principal: Tdm_principal
       #9',CANDIDATO.NOME'#9#9#9
       #9',CANDIDATO.DATA_CADASTRO'#9
       #9',cast(CANDIDATO.DATA_NASCIMENTO'#9' as datetime) DATA_NASCIMENTO'#9
+      #9',ALUNO.ALUNO'
       #9',ALUNO.MATRICULA'#9#9#9
       #9',ALUNO.DATA_MATRICULA'#9#9
       ''
@@ -9507,21 +9632,25 @@ object dm_principal: Tdm_principal
         'WHERE ((@MATRICULA<=0) or (CAST(ISNULL(DBO.ALUNO.MATRICULA,0)  A' +
         'S VARCHAR(255)) LIKE '#39'%'#39'+CAST(@MATRICULA AS VARCHAR(255))+'#39'%'#39'))'
       '  and ((@NOME='#39#39') or (CANDIDATO.NOME LIKE '#39'%'#39'+@NOME+'#39'%'#39'))'
-      '  ')
+      '  '
+      ' ')
     Left = 480
     Top = 168
     ParamData = <
       item
+        Position = 1
         Name = 'MATRICULA'
-        DataType = ftWideString
+        DataType = ftString
         ParamType = ptInput
-        Value = '0'
+        Size = 2
+        Value = '1'
       end
       item
+        Position = 2
         Name = 'NOME'
-        DataType = ftWideMemo
+        DataType = ftWideString
         ParamType = ptInput
-        Value = 'teste'
+        Value = 'a'
       end>
     object sqlTelaAlunoPESSOA: TIntegerField
       FieldName = 'PESSOA'
@@ -9582,6 +9711,11 @@ object dm_principal: Tdm_principal
     object sqlTelaAlunoCEP: TStringField
       FieldName = 'CEP'
       Size = 11
+    end
+    object sqlTelaAlunoALUNO: TFDAutoIncField
+      FieldName = 'ALUNO'
+      Origin = 'ALUNO'
+      ReadOnly = True
     end
   end
   object sqlTelaCandidato: TFDQuery
@@ -9712,6 +9846,7 @@ object dm_principal: Tdm_principal
     Top = 288
   end
   object cdsTelaCandidato: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <
       item
@@ -12909,60 +13044,77 @@ object dm_principal: Tdm_principal
     Top = 232
     object cdsTelaFuncionarioSEL: TIntegerField
       FieldName = 'SEL'
+      Origin = 'SEL'
       ReadOnly = True
       Required = True
     end
     object cdsTelaFuncionarioPESSOA: TAutoIncField
       FieldName = 'PESSOA'
+      Origin = 'PESSOA'
+      ProviderFlags = [pfInWhere]
       ReadOnly = True
     end
     object cdsTelaFuncionarioCPF_CNPJ: TStringField
       FieldName = 'CPF_CNPJ'
+      Origin = 'CPF_CNPJ'
       Size = 15
     end
     object cdsTelaFuncionarioRG: TStringField
       FieldName = 'RG'
+      Origin = 'RG'
       Size = 150
     end
     object cdsTelaFuncionarioEMAIL: TStringField
       FieldName = 'EMAIL'
+      Origin = 'EMAIL'
       Size = 255
     end
     object cdsTelaFuncionarioFUNCIONARIO: TAutoIncField
       FieldName = 'FUNCIONARIO'
+      Origin = 'FUNCIONARIO'
+      ProviderFlags = [pfInWhere]
       ReadOnly = True
     end
     object cdsTelaFuncionarioNOME: TStringField
       FieldName = 'NOME'
+      Origin = 'NOME'
       Size = 255
     end
     object cdsTelaFuncionarioDATA_NASCIMENTO: TSQLTimeStampField
       FieldName = 'DATA_NASCIMENTO'
+      Origin = 'DATA_NASCIMENTO'
     end
     object cdsTelaFuncionarioTIPO: TStringField
       FieldName = 'TIPO'
+      Origin = 'TIPO'
       Size = 15
     end
     object cdsTelaFuncionarioLOCATARIO: TStringField
       FieldName = 'LOCATARIO'
+      Origin = 'LOCATARIO'
       Size = 255
     end
     object cdsTelaFuncionarioLOCALIDADE: TIntegerField
       FieldName = 'LOCALIDADE'
+      Origin = 'LOCALIDADE'
     end
     object cdsTelaFuncionarioUF: TIntegerField
       FieldName = 'UF'
+      Origin = 'UF'
     end
     object cdsTelaFuncionarioCEP: TStringField
       FieldName = 'CEP'
+      Origin = 'CEP'
       Size = 11
     end
     object cdsTelaFuncionarioBAIRRO: TStringField
       FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
       Size = 100
     end
     object cdsTelaFuncionarioIDADE: TIntegerField
       FieldName = 'IDADE'
+      Origin = 'IDADE'
       ReadOnly = True
     end
   end
@@ -13206,6 +13358,2102 @@ object dm_principal: Tdm_principal
     object sqlNecessidadeCandidatoCANDIDATO: TIntegerField
       FieldName = 'CANDIDATO'
       Origin = 'CANDIDATO'
+    end
+  end
+  object dspProntuario: TDataSetProvider
+    DataSet = sqlProntuario
+    Left = 536
+    Top = 930
+  end
+  object cdsProntuario: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'MATRICULA'
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        DataType = ftWideString
+        Name = 'NOME'
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    ProviderName = 'dspProntuario'
+    Left = 616
+    Top = 930
+    object cdsProntuarioNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 255
+    end
+    object cdsProntuarioRG: TStringField
+      FieldName = 'RG'
+      Origin = 'RG'
+      Size = 150
+    end
+    object cdsProntuarioCPF_CNPJ: TStringField
+      FieldName = 'CPF_CNPJ'
+      Origin = 'CPF_CNPJ'
+      Size = 15
+    end
+    object cdsProntuarioNIS: TStringField
+      FieldName = 'NIS'
+      Origin = 'NIS'
+    end
+    object cdsProntuarioIDADE: TBCDField
+      FieldName = 'IDADE'
+      Origin = 'IDADE'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object cdsProntuarioNOME_PAI: TStringField
+      FieldName = 'NOME_PAI'
+      Origin = 'NOME_PAI'
+      Size = 255
+    end
+    object cdsProntuarioNOME_MAE: TStringField
+      FieldName = 'NOME_MAE'
+      Origin = 'NOME_MAE'
+      Size = 255
+    end
+    object cdsProntuarioRESPONSAVEL: TStringField
+      FieldName = 'RESPONSAVEL'
+      Origin = 'RESPONSAVEL'
+      Size = 255
+    end
+    object cdsProntuarioPRONTUARIO: TMemoField
+      FieldName = 'PRONTUARIO'
+      Origin = 'PRONTUARIO'
+      BlobType = ftMemo
+      Size = 2147483647
+    end
+    object cdsProntuarioEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 255
+    end
+    object cdsProntuarioCANDIDATO: TAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ProviderFlags = [pfInWhere]
+      ReadOnly = True
+    end
+    object cdsProntuarioPESSOA: TIntegerField
+      FieldName = 'PESSOA'
+      Origin = 'PESSOA'
+    end
+    object cdsProntuarioFOTO: TBlobField
+      FieldName = 'FOTO'
+      Origin = 'FOTO'
+    end
+    object cdsProntuarioMATRICULA: TIntegerField
+      FieldName = 'MATRICULA'
+      Origin = 'MATRICULA'
+    end
+    object cdsProntuarioFAZUSODEMEDICAMENTOS_SIM: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_SIM'
+      Origin = 'FAZUSODEMEDICAMENTOS_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioFAZUSODEMEDICAMENTOS_NAO: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_NAO'
+      Origin = 'FAZUSODEMEDICAMENTOS_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Origin = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioALERGICOALGUMMEDICAMENTO_SIM: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_SIM'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioALERGICOALGUMMEDICAMENTO_NAO: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_NAO'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_SIM: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_SIM'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_NAO: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_NAO'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioAUTORIZADOIREMBORASOZINHO_SIM: TStringField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO_SIM'
+      Origin = 'AUTORIZADOIREMBORASOZINHO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioAUTORIZADOIREMBORASOZINHO_NAO: TStringField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO_NAO'
+      Origin = 'AUTORIZADOIREMBORASOZINHO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_SIM: TStringField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO_SIM'
+      Origin = 'AUTORIZADOSERFILMADOFOTOGRAFADO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_NAO: TStringField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO_NAO'
+      Origin = 'AUTORIZADOSERFILMADOFOTOGRAFADO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM: TStringField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM'
+      Origin = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO: TStringField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO'
+      Origin = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioCOMPARECERDIARIAMENTE_SIM: TStringField
+      FieldName = 'COMPARECERDIARIAMENTE_SIM'
+      Origin = 'COMPARECERDIARIAMENTE_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioCOMPARECERDIARIAMENTE_NAO: TStringField
+      FieldName = 'COMPARECERDIARIAMENTE_NAO'
+      Origin = 'COMPARECERDIARIAMENTE_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPERIODOADAPTACO: TStringField
+      FieldName = 'PERIODOADAPTACO'
+      Origin = 'PERIODOADAPTACO'
+      Size = 255
+    end
+    object cdsProntuarioDIASINDICADOSFREQUENCIA: TStringField
+      FieldName = 'DIASINDICADOSFREQUENCIA'
+      Origin = 'DIASINDICADOSFREQUENCIA'
+      Size = 255
+    end
+    object cdsProntuarioPODERAALMOCARORGANIZACO_SIM: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_SIM'
+      Origin = 'PODERAALMOCARORGANIZACO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPODERAALMOCARORGANIZACO_NAO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_NAO'
+      Origin = 'PODERAALMOCARORGANIZACO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Origin = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Size = 255
+    end
+    object cdsProntuarioALERGICORESTRICOALGUMALIMENTO_SIM: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_SIM'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioALERGICORESTRICOALGUMALIMENTO_NAO: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_NAO'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioIDADE_PAI: TBCDField
+      FieldName = 'IDADE_PAI'
+      Origin = 'IDADE_PAI'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object cdsProntuarioIDADE_MAE: TBCDField
+      FieldName = 'IDADE_MAE'
+      Origin = 'IDADE_MAE'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object cdsProntuarioIDADE_RESP: TBCDField
+      FieldName = 'IDADE_RESP'
+      Origin = 'IDADE_RESP'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object cdsProntuarioPROFISSAO: TStringField
+      FieldName = 'PROFISSAO'
+      Origin = 'PROFISSAO'
+      Size = 50
+    end
+    object cdsProntuarioESCOLARIDADE: TStringField
+      FieldName = 'ESCOLARIDADE'
+      Origin = 'ESCOLARIDADE'
+      Size = 50
+    end
+    object cdsProntuarioCANDIDATO_NOMEESCOLA: TStringField
+      FieldName = 'CANDIDATO_NOMEESCOLA'
+      Origin = 'CANDIDATO_NOMEESCOLA'
+      Size = 255
+    end
+    object cdsProntuarioATIVIDADE_EXTRAS: TStringField
+      FieldName = 'ATIVIDADE_EXTRAS'
+      Origin = 'ATIVIDADE_EXTRAS'
+      Size = 255
+    end
+    object cdsProntuarioFREQUENTAESCOLA_SIM: TStringField
+      FieldName = 'FREQUENTAESCOLA_SIM'
+      Origin = 'FREQUENTAESCOLA_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioFREQUENTAESCOLA_NAO: TStringField
+      FieldName = 'FREQUENTAESCOLA_NAO'
+      Origin = 'FREQUENTAESCOLA_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioANO: TStringField
+      FieldName = 'ANO'
+      Origin = 'ANO'
+    end
+    object cdsProntuarioPERIODO_MANHA: TStringField
+      FieldName = 'PERIODO_MANHA'
+      Origin = 'PERIODO_MANHA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPERIODO_TARDE: TStringField
+      FieldName = 'PERIODO_TARDE'
+      Origin = 'PERIODO_TARDE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioPERIODO_NOITE: TStringField
+      FieldName = 'PERIODO_NOITE'
+      Origin = 'PERIODO_NOITE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioTAMANHOCAMISETA_P: TStringField
+      FieldName = 'TAMANHOCAMISETA_P'
+      Origin = 'TAMANHOCAMISETA_P'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioTAMANHOCAMISETA_M: TStringField
+      FieldName = 'TAMANHOCAMISETA_M'
+      Origin = 'TAMANHOCAMISETA_M'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioTAMANHOCAMISETA_G: TStringField
+      FieldName = 'TAMANHOCAMISETA_G'
+      Origin = 'TAMANHOCAMISETA_G'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioTAMANHOCAMISETA_GG: TStringField
+      FieldName = 'TAMANHOCAMISETA_GG'
+      Origin = 'TAMANHOCAMISETA_GG'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_SIM: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_SIM'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_NAO: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_NAO'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Size = 255
+    end
+    object cdsProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Size = 255
+    end
+    object cdsProntuarioRECEBEBENEFICIO_BPC: TStringField
+      FieldName = 'RECEBEBENEFICIO_BPC'
+      Origin = 'RECEBEBENEFICIO_BPC'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBEBENEFICIO_APOSENTADORIA: TStringField
+      FieldName = 'RECEBEBENEFICIO_APOSENTADORIA'
+      Origin = 'RECEBEBENEFICIO_APOSENTADORIA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBEBENEFICIO_NAO: TStringField
+      FieldName = 'RECEBEBENEFICIO_NAO'
+      Origin = 'RECEBEBENEFICIO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBEBENEFICIO_OUTROS: TStringField
+      FieldName = 'RECEBEBENEFICIO_OUTROS'
+      Origin = 'RECEBEBENEFICIO_OUTROS'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBEBENEFICIO_QUAL: TStringField
+      FieldName = 'RECEBEBENEFICIO_QUAL'
+      Origin = 'RECEBEBENEFICIO_QUAL'
+      Size = 255
+    end
+    object cdsProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_SIM: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_SIM'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_NAO: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_NAO'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBE_RENDA: TStringField
+      FieldName = 'RECEBE_RENDA'
+      Origin = 'RECEBE_RENDA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBE_BOLSA: TStringField
+      FieldName = 'RECEBE_BOLSA'
+      Origin = 'RECEBE_BOLSA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBE_RENDA_CIDA: TStringField
+      FieldName = 'RECEBE_RENDA_CIDA'
+      Origin = 'RECEBE_RENDA_CIDA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object cdsProntuarioRECEBE_ACAOJOVE: TStringField
+      FieldName = 'RECEBE_ACAOJOVE'
+      Origin = 'RECEBE_ACAOJOVE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+  end
+  object dsProntuario: TDataSource
+    DataSet = cdsProntuario
+    Left = 696
+    Top = 930
+  end
+  object sqlProntuario: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlProntuario**/'
+      'DECLARE @MATRICULA INT = :MATRICULA;'
+      'DECLARE @NOME VARCHAR(50) = :NOME;'
+      ''
+      ''
+      'SELECT'
+      ' CANDIDATO.NOME'
+      ',PESSOA.RG'
+      ',PESSOA.CPF_CNPJ'
+      ',CANDIDATO.NIS'
+      
+        ',FLOOR(DATEDIFF(DAY, CANDIDATO.DATA_NASCIMENTO, GETDATE()) / 365' +
+        '.25) AS IDADE'
+      ',CANDIDATO.DATA_NASCIMENTO'
+      ''
+      ',CANDIDATO.NOME_PAI'
+      
+        ',FLOOR(DATEDIFF(DAY, CANDIDATO.PAI_NASCIMENTO, GETDATE()) / 365.' +
+        '25) AS IDADE_PAI'
+      ',CANDIDATO.NOME_MAE'
+      
+        ',FLOOR(DATEDIFF(DAY, CANDIDATO.MAE_NASCIMENTO, GETDATE()) / 365.' +
+        '25) AS IDADE_MAE'
+      ',CANDIDATO.RESPONSAVEL'
+      
+        ',FLOOR(DATEDIFF(DAY, CANDIDATO.RESPONSAVEL_NASCIMENTO, GETDATE()' +
+        ') / 365.25) AS IDADE_RESP'
+      ''
+      ''
+      ',CANDIDATO.PROFISSAO'
+      ',CANDIDATO.ESCOLARIDADE'
+      ''
+      ''
+      ''
+      ''
+      ''
+      ',CANDIDATO.PRONTUARIO'
+      ''
+      ''
+      ',PESSOA.EMAIL'
+      ',CANDIDATO.CANDIDATO'
+      ',CANDIDATO.PESSOA'
+      ''
+      ''
+      ',CANDIDATO.FOTO'
+      ',ALUNO.MATRICULA'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.FAZUSODEMEDICAMENTOS = 1 THEN '#39'X'#39' ELSE '#39#39' ' +
+        'END AS FAZUSODEMEDICAMENTOS_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.FAZUSODEMEDICAMENTOS,0) <> 1 THEN '#39 +
+        'X'#39' ELSE '#39#39' END AS FAZUSODEMEDICAMENTOS_NAO'
+      ',PRONTUARIO.FAZUSODEMEDICAMENTOS_QUAL'
+      ''
+      
+        ',CASE WHEN PRONTUARIO.ALERGICOALGUMMEDICAMENTO = 1 THEN '#39'X'#39' ELSE' +
+        ' '#39#39' END AS ALERGICOALGUMMEDICAMENTO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.ALERGICOALGUMMEDICAMENTO,0) <> 1 TH' +
+        'EN '#39'X'#39' ELSE '#39#39' END AS ALERGICOALGUMMEDICAMENTO_NAO'
+      ',PRONTUARIO.ALERGICOALGUMMEDICAMENTO_QUAL'
+      ''
+      
+        ',CASE WHEN PRONTUARIO.POSSUIBILHETEESPECIALTRANSPORTE = 1 THEN '#39 +
+        'X'#39' ELSE '#39#39' END AS POSSUIBILHETEESPECIALTRANSPORTE_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.POSSUIBILHETEESPECIALTRANSPORTE,0) ' +
+        '<> 1 THEN '#39'X'#39' ELSE '#39#39' END AS POSSUIBILHETEESPECIALTRANSPORTE_NAO'
+      ',PRONTUARIO.POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA = 1 THEN ' +
+        #39'X'#39' ELSE '#39#39' END AS RECEBEPROGRAMATRANSFERENCIARENDA_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA,0)' +
+        ' <> 1 THEN '#39'X'#39' ELSE '#39#39' END AS RECEBEPROGRAMATRANSFERENCIARENDA_N' +
+        'AO'
+      ''
+      ''
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA_QU' +
+        'AL,0) = 1 THEN '#39'X'#39' ELSE '#39#39' END AS RECEBE_RENDA'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA_QU' +
+        'AL,0) = 2 THEN '#39'X'#39' ELSE '#39#39' END AS RECEBE_BOLSA'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA_QU' +
+        'AL,0) = 3 THEN '#39'X'#39' ELSE '#39#39' END AS RECEBE_RENDA_CIDA'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEPROGRAMATRANSFERENCIARENDA_QU' +
+        'AL,0) = 4 THEN '#39'X'#39' ELSE '#39#39' END AS RECEBE_ACAOJOVE'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.AUTORIZADOIREMBORASOZINHO = 1 THEN '#39'X'#39' ELS' +
+        'E '#39#39' END AS AUTORIZADOIREMBORASOZINHO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.AUTORIZADOIREMBORASOZINHO,0) <> 1 T' +
+        'HEN '#39'X'#39' ELSE '#39#39' END AS AUTORIZADOIREMBORASOZINHO_NAO'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.AUTORIZADOSERFILMADOFOTOGRAFADO = 1 THEN '#39 +
+        'X'#39' ELSE '#39#39' END AS AUTORIZADOSERFILMADOFOTOGRAFADO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.AUTORIZADOSERFILMADOFOTOGRAFADO,0) ' +
+        '<> 1 THEN '#39'X'#39' ELSE '#39#39' END AS AUTORIZADOSERFILMADOFOTOGRAFADO_NAO'
+      ''
+      
+        ',CASE WHEN PRONTUARIO.AUTORIZADOPARTICIPARATIVIDADESEXTERNAS = 1' +
+        ' THEN '#39'X'#39' ELSE '#39#39' END AS AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_' +
+        'SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.AUTORIZADOPARTICIPARATIVIDADESEXTER' +
+        'NAS,0) <> 1 THEN '#39'X'#39' ELSE '#39#39' END AS AUTORIZADOPARTICIPARATIVIDAD' +
+        'ESEXTERNAS_NAO'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.COMPARECERDIARIAMENTE = 1 THEN '#39'X'#39' ELSE '#39#39 +
+        ' END AS COMPARECERDIARIAMENTE_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.COMPARECERDIARIAMENTE,0) <> 1 THEN ' +
+        #39'X'#39' ELSE '#39#39' END AS COMPARECERDIARIAMENTE_NAO'
+      ''
+      ',PRONTUARIO.PERIODOADAPTACO'
+      ',PRONTUARIO.DIASINDICADOSFREQUENCIA'
+      ''
+      
+        ',CASE WHEN PRONTUARIO.PODERAALMOCARORGANIZACO = 1 THEN '#39'X'#39' ELSE ' +
+        #39#39' END AS PODERAALMOCARORGANIZACO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.PODERAALMOCARORGANIZACO,0) <> 1 THE' +
+        'N '#39'X'#39' ELSE '#39#39' END AS PODERAALMOCARORGANIZACO_NAO'
+      ',PRONTUARIO.PODERAALMOCARORGANIZACO_MOTIVO'
+      ''
+      ''
+      
+        ',CASE WHEN PRONTUARIO.ALERGICORESTRICOALGUMALIMENTO = 1 THEN '#39'X'#39 +
+        ' ELSE '#39#39' END AS ALERGICORESTRICOALGUMALIMENTO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.ALERGICORESTRICOALGUMALIMENTO,0) <>' +
+        ' 1 THEN '#39'X'#39' ELSE '#39#39' END AS ALERGICORESTRICOALGUMALIMENTO_NAO'
+      ',PRONTUARIO.ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      ''
+      ''
+      ''
+      ''
+      ',CANDIDATO_NOMEESCOLA'
+      ',ATIVIDADE_EXTRAS '
+      
+        ',CASE WHEN PRONTUARIO.FREQUENTAESCOLA = 1 THEN '#39'X'#39' ELSE '#39#39' END A' +
+        'S FREQUENTAESCOLA_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.FREQUENTAESCOLA,0) <> 1 THEN '#39'X'#39' EL' +
+        'SE '#39#39' END AS FREQUENTAESCOLA_NAO'
+      ',ANO '
+      ''
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.PERIODO,0) = 1 THEN '#39'X'#39' ELSE '#39#39' END' +
+        ' AS PERIODO_MANHA'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.PERIODO,0) = 2 THEN '#39'X'#39' ELSE '#39#39' END' +
+        ' AS PERIODO_TARDE'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.PERIODO,0) = 3 THEN '#39'X'#39' ELSE '#39#39' END' +
+        ' AS PERIODO_NOITE'
+      ''
+      ''
+      ''
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.TAMANHOCAMISETA,0) = 1 THEN '#39'X'#39' ELS' +
+        'E '#39#39' END AS TAMANHOCAMISETA_P'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.TAMANHOCAMISETA,0) = 2 THEN '#39'X'#39' ELS' +
+        'E '#39#39' END AS TAMANHOCAMISETA_M'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.TAMANHOCAMISETA,0) = 3 THEN '#39'X'#39' ELS' +
+        'E '#39#39' END AS TAMANHOCAMISETA_G'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.TAMANHOCAMISETA,0) = 4 THEN '#39'X'#39' ELS' +
+        'E '#39#39' END AS TAMANHOCAMISETA_GG'
+      ''
+      
+        ',CASE WHEN PRONTUARIO.REALIZAATENDIMENTOTERAPEUTICO = 1 THEN '#39'X'#39 +
+        #9#9#9'  ELSE '#39#39' END AS REALIZAATENDIMENTOTERAPEUTICO_SIM'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.REALIZAATENDIMENTOTERAPEUTICO,0) <>' +
+        ' 1 THEN '#39'X'#39'   ELSE '#39#39' END AS REALIZAATENDIMENTOTERAPEUTICO_NAO'
+      ',REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      ',REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      ',REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      ''
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEBENEFICIO,0) = 1  THEN '#39'X'#39'   ' +
+        ' ELSE '#39#39' END AS RECEBEBENEFICIO_BPC'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEBENEFICIO,0) = 2  THEN '#39'X'#39'   ' +
+        ' ELSE '#39#39' END AS RECEBEBENEFICIO_APOSENTADORIA'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEBENEFICIO,0) =3   THEN '#39'X'#39'   ' +
+        ' ELSE '#39#39' END AS RECEBEBENEFICIO_NAO'
+      
+        ',CASE WHEN ISNULL(PRONTUARIO.RECEBEBENEFICIO,0) = 4  THEN '#39'X'#39'   ' +
+        'ELSE '#39#39' END AS RECEBEBENEFICIO_OUTROS'
+      ',RECEBEBENEFICIO_QUAL'
+      ''
+      ''
+      ''
+      '      FROM PESSOA'
+      'INNER JOIN CANDIDATO ON PESSOA.PESSOA=CANDIDATO.PESSOA'
+      ''
+      'INNER JOIN ALUNO ON CANDIDATO.CANDIDATO = ALUNO.CANDIDATO'
+      
+        'LEFT JOIN PRONTUARIO ON PRONTUARIO.CANDIDATO = CANDIDATO.CANDIDA' +
+        'TO'
+      ''
+      ''
+      'WHERE 1=1'
+      ''
+      'AND (@NOME = '#39#39' OR  CANDIDATO.NOME LIKE '#39'%'#39'+@NOME+'#39'%'#39')'
+      
+        'AND (ISNULL(ALUNO.MATRICULA,0) = CASE WHEN @MATRICULA> 0 THEN @M' +
+        'ATRICULA ELSE ISNULL(ALUNO.MATRICULA,0)  END)'
+      ''
+      '')
+    Left = 464
+    Top = 930
+    ParamData = <
+      item
+        Position = 1
+        Name = 'MATRICULA'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        Position = 2
+        Name = 'NOME'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    object sqlProntuarioNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 255
+    end
+    object sqlProntuarioRG: TStringField
+      FieldName = 'RG'
+      Origin = 'RG'
+      Size = 150
+    end
+    object sqlProntuarioCPF_CNPJ: TStringField
+      FieldName = 'CPF_CNPJ'
+      Origin = 'CPF_CNPJ'
+      Size = 15
+    end
+    object sqlProntuarioNIS: TStringField
+      FieldName = 'NIS'
+      Origin = 'NIS'
+    end
+    object sqlProntuarioIDADE: TBCDField
+      FieldName = 'IDADE'
+      Origin = 'IDADE'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object sqlProntuarioNOME_PAI: TStringField
+      FieldName = 'NOME_PAI'
+      Origin = 'NOME_PAI'
+      Size = 255
+    end
+    object sqlProntuarioNOME_MAE: TStringField
+      FieldName = 'NOME_MAE'
+      Origin = 'NOME_MAE'
+      Size = 255
+    end
+    object sqlProntuarioRESPONSAVEL: TStringField
+      FieldName = 'RESPONSAVEL'
+      Origin = 'RESPONSAVEL'
+      Size = 255
+    end
+    object sqlProntuarioPRONTUARIO: TMemoField
+      FieldName = 'PRONTUARIO'
+      Origin = 'PRONTUARIO'
+      BlobType = ftMemo
+      Size = 2147483647
+    end
+    object sqlProntuarioEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 255
+    end
+    object sqlProntuarioCANDIDATO: TFDAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ReadOnly = True
+    end
+    object sqlProntuarioPESSOA: TIntegerField
+      FieldName = 'PESSOA'
+      Origin = 'PESSOA'
+    end
+    object sqlProntuarioFOTO: TBlobField
+      FieldName = 'FOTO'
+      Origin = 'FOTO'
+    end
+    object sqlProntuarioMATRICULA: TIntegerField
+      FieldName = 'MATRICULA'
+      Origin = 'MATRICULA'
+    end
+    object sqlProntuarioFAZUSODEMEDICAMENTOS_SIM: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_SIM'
+      Origin = 'FAZUSODEMEDICAMENTOS_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioFAZUSODEMEDICAMENTOS_NAO: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_NAO'
+      Origin = 'FAZUSODEMEDICAMENTOS_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Origin = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioALERGICOALGUMMEDICAMENTO_SIM: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_SIM'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioALERGICOALGUMMEDICAMENTO_NAO: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_NAO'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_SIM: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_SIM'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_NAO: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_NAO'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_SIM: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_SIM'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_NAO: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_NAO'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOIREMBORASOZINHO_SIM: TStringField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO_SIM'
+      Origin = 'AUTORIZADOIREMBORASOZINHO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOIREMBORASOZINHO_NAO: TStringField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO_NAO'
+      Origin = 'AUTORIZADOIREMBORASOZINHO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_SIM: TStringField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO_SIM'
+      Origin = 'AUTORIZADOSERFILMADOFOTOGRAFADO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO_NAO: TStringField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO_NAO'
+      Origin = 'AUTORIZADOSERFILMADOFOTOGRAFADO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM: TStringField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM'
+      Origin = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO: TStringField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO'
+      Origin = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioCOMPARECERDIARIAMENTE_SIM: TStringField
+      FieldName = 'COMPARECERDIARIAMENTE_SIM'
+      Origin = 'COMPARECERDIARIAMENTE_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioCOMPARECERDIARIAMENTE_NAO: TStringField
+      FieldName = 'COMPARECERDIARIAMENTE_NAO'
+      Origin = 'COMPARECERDIARIAMENTE_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPERIODOADAPTACO: TStringField
+      FieldName = 'PERIODOADAPTACO'
+      Origin = 'PERIODOADAPTACO'
+      Size = 255
+    end
+    object sqlProntuarioDIASINDICADOSFREQUENCIA: TStringField
+      FieldName = 'DIASINDICADOSFREQUENCIA'
+      Origin = 'DIASINDICADOSFREQUENCIA'
+      Size = 255
+    end
+    object sqlProntuarioPODERAALMOCARORGANIZACO_SIM: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_SIM'
+      Origin = 'PODERAALMOCARORGANIZACO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPODERAALMOCARORGANIZACO_NAO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_NAO'
+      Origin = 'PODERAALMOCARORGANIZACO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Origin = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Size = 255
+    end
+    object sqlProntuarioALERGICORESTRICOALGUMALIMENTO_SIM: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_SIM'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioALERGICORESTRICOALGUMALIMENTO_NAO: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_NAO'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioIDADE_PAI: TBCDField
+      FieldName = 'IDADE_PAI'
+      Origin = 'IDADE_PAI'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object sqlProntuarioIDADE_MAE: TBCDField
+      FieldName = 'IDADE_MAE'
+      Origin = 'IDADE_MAE'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object sqlProntuarioIDADE_RESP: TBCDField
+      FieldName = 'IDADE_RESP'
+      Origin = 'IDADE_RESP'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object sqlProntuarioPROFISSAO: TStringField
+      FieldName = 'PROFISSAO'
+      Origin = 'PROFISSAO'
+      Size = 50
+    end
+    object sqlProntuarioESCOLARIDADE: TStringField
+      FieldName = 'ESCOLARIDADE'
+      Origin = 'ESCOLARIDADE'
+      Size = 50
+    end
+    object sqlProntuarioCANDIDATO_NOMEESCOLA: TStringField
+      FieldName = 'CANDIDATO_NOMEESCOLA'
+      Origin = 'CANDIDATO_NOMEESCOLA'
+      Size = 255
+    end
+    object sqlProntuarioATIVIDADE_EXTRAS: TStringField
+      FieldName = 'ATIVIDADE_EXTRAS'
+      Origin = 'ATIVIDADE_EXTRAS'
+      Size = 255
+    end
+    object sqlProntuarioFREQUENTAESCOLA_SIM: TStringField
+      FieldName = 'FREQUENTAESCOLA_SIM'
+      Origin = 'FREQUENTAESCOLA_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioFREQUENTAESCOLA_NAO: TStringField
+      FieldName = 'FREQUENTAESCOLA_NAO'
+      Origin = 'FREQUENTAESCOLA_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioANO: TStringField
+      FieldName = 'ANO'
+      Origin = 'ANO'
+    end
+    object sqlProntuarioPERIODO_MANHA: TStringField
+      FieldName = 'PERIODO_MANHA'
+      Origin = 'PERIODO_MANHA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPERIODO_TARDE: TStringField
+      FieldName = 'PERIODO_TARDE'
+      Origin = 'PERIODO_TARDE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioPERIODO_NOITE: TStringField
+      FieldName = 'PERIODO_NOITE'
+      Origin = 'PERIODO_NOITE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioTAMANHOCAMISETA_P: TStringField
+      FieldName = 'TAMANHOCAMISETA_P'
+      Origin = 'TAMANHOCAMISETA_P'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioTAMANHOCAMISETA_M: TStringField
+      FieldName = 'TAMANHOCAMISETA_M'
+      Origin = 'TAMANHOCAMISETA_M'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioTAMANHOCAMISETA_G: TStringField
+      FieldName = 'TAMANHOCAMISETA_G'
+      Origin = 'TAMANHOCAMISETA_G'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioTAMANHOCAMISETA_GG: TStringField
+      FieldName = 'TAMANHOCAMISETA_GG'
+      Origin = 'TAMANHOCAMISETA_GG'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_SIM: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_SIM'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_SIM'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_NAO: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_NAO'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Size = 255
+    end
+    object sqlProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Size = 255
+    end
+    object sqlProntuarioRECEBEBENEFICIO_BPC: TStringField
+      FieldName = 'RECEBEBENEFICIO_BPC'
+      Origin = 'RECEBEBENEFICIO_BPC'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBEBENEFICIO_APOSENTADORIA: TStringField
+      FieldName = 'RECEBEBENEFICIO_APOSENTADORIA'
+      Origin = 'RECEBEBENEFICIO_APOSENTADORIA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBEBENEFICIO_NAO: TStringField
+      FieldName = 'RECEBEBENEFICIO_NAO'
+      Origin = 'RECEBEBENEFICIO_NAO'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBEBENEFICIO_OUTROS: TStringField
+      FieldName = 'RECEBEBENEFICIO_OUTROS'
+      Origin = 'RECEBEBENEFICIO_OUTROS'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBEBENEFICIO_QUAL: TStringField
+      FieldName = 'RECEBEBENEFICIO_QUAL'
+      Origin = 'RECEBEBENEFICIO_QUAL'
+      Size = 255
+    end
+    object sqlProntuarioRECEBE_RENDA: TStringField
+      FieldName = 'RECEBE_RENDA'
+      Origin = 'RECEBE_RENDA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBE_BOLSA: TStringField
+      FieldName = 'RECEBE_BOLSA'
+      Origin = 'RECEBE_BOLSA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBE_RENDA_CIDA: TStringField
+      FieldName = 'RECEBE_RENDA_CIDA'
+      Origin = 'RECEBE_RENDA_CIDA'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+    object sqlProntuarioRECEBE_ACAOJOVE: TStringField
+      FieldName = 'RECEBE_ACAOJOVE'
+      Origin = 'RECEBE_ACAOJOVE'
+      ReadOnly = True
+      Required = True
+      Size = 1
+    end
+  end
+  object dspCandidato_Prontuario: TDataSetProvider
+    DataSet = sqlCandidato_Prontuario
+    Left = 536
+    Top = 866
+  end
+  object cdsCandidato_Prontuario: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'PESSOA'
+        ParamType = ptInput
+        Value = '1'
+      end>
+    ProviderName = 'dspCandidato_Prontuario'
+    Left = 616
+    Top = 866
+    object cdsCandidato_ProntuarioPRONTUARIO: TAutoIncField
+      FieldName = 'PRONTUARIO'
+      ReadOnly = True
+    end
+    object cdsCandidato_ProntuarioCANDIDATO: TIntegerField
+      FieldName = 'CANDIDATO'
+    end
+    object cdsCandidato_ProntuarioFAZUSODEMEDICAMENTOS: TIntegerField
+      FieldName = 'FAZUSODEMEDICAMENTOS'
+    end
+    object cdsCandidato_ProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioALERGICOALGUMMEDICAMENTO: TIntegerField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO'
+    end
+    object cdsCandidato_ProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE: TIntegerField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE'
+    end
+    object cdsCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA: TIntegerField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA'
+    end
+    object cdsCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_QUAL: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioAUTORIZADOIREMBORASOZINHO: TIntegerField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO'
+    end
+    object cdsCandidato_ProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO: TIntegerField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO'
+    end
+    object cdsCandidato_ProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS: TIntegerField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS'
+    end
+    object cdsCandidato_ProntuarioCOMPARECERDIARIAMENTE: TIntegerField
+      FieldName = 'COMPARECERDIARIAMENTE'
+    end
+    object cdsCandidato_ProntuarioPERIODOADAPTACO: TStringField
+      FieldName = 'PERIODOADAPTACO'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioDIASINDICADOSFREQUENCIA: TStringField
+      FieldName = 'DIASINDICADOSFREQUENCIA'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioPODERAALMOCARORGANIZACO: TIntegerField
+      FieldName = 'PODERAALMOCARORGANIZACO'
+    end
+    object cdsCandidato_ProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO: TIntegerField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO'
+    end
+    object cdsCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioDATA_REF: TSQLTimeStampField
+      FieldName = 'DATA_REF'
+    end
+    object cdsCandidato_ProntuarioCANDIDATO_NOMEESCOLA: TStringField
+      FieldName = 'CANDIDATO_NOMEESCOLA'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioATIVIDADE_EXTRAS: TStringField
+      FieldName = 'ATIVIDADE_EXTRAS'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioFREQUENTAESCOLA: TIntegerField
+      FieldName = 'FREQUENTAESCOLA'
+    end
+    object cdsCandidato_ProntuarioANO: TStringField
+      FieldName = 'ANO'
+    end
+    object cdsCandidato_ProntuarioPERIODO: TIntegerField
+      FieldName = 'PERIODO'
+    end
+    object cdsCandidato_ProntuarioTAMANHOCAMISETA: TIntegerField
+      FieldName = 'TAMANHOCAMISETA'
+    end
+    object cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO: TIntegerField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO'
+    end
+    object cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Size = 255
+    end
+    object cdsCandidato_ProntuarioRECEBEBENEFICIO: TIntegerField
+      FieldName = 'RECEBEBENEFICIO'
+    end
+    object cdsCandidato_ProntuarioRECEBEBENEFICIO_QUAL: TStringField
+      FieldName = 'RECEBEBENEFICIO_QUAL'
+      Size = 255
+    end
+  end
+  object dsCandidato_Prontuario: TDataSource
+    DataSet = cdsCandidato_Prontuario
+    Left = 696
+    Top = 866
+  end
+  object sqlCandidato_Prontuario: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlCandidato_Prontuario**/'
+      'select '
+      ' PRONTUARIO '
+      ',CANDIDATO '
+      ',FAZUSODEMEDICAMENTOS '
+      ',FAZUSODEMEDICAMENTOS_QUAL '
+      ',ALERGICOALGUMMEDICAMENTO  '
+      ',ALERGICOALGUMMEDICAMENTO_QUAL '
+      ',POSSUIBILHETEESPECIALTRANSPORTE '
+      ',POSSUIBILHETEESPECIALTRANSPORTE_QUAL '
+      ',RECEBEPROGRAMATRANSFERENCIARENDA '
+      ',RECEBEPROGRAMATRANSFERENCIARENDA_QUAL '
+      ',AUTORIZADOIREMBORASOZINHO  '
+      ',AUTORIZADOSERFILMADOFOTOGRAFADO '
+      ',AUTORIZADOPARTICIPARATIVIDADESEXTERNAS '
+      ',COMPARECERDIARIAMENTE  '
+      ',PERIODOADAPTACO '
+      ',DIASINDICADOSFREQUENCIA '
+      ',PODERAALMOCARORGANIZACO '
+      ',PODERAALMOCARORGANIZACO_MOTIVO '
+      ',ALERGICORESTRICOALGUMALIMENTO '
+      ',ALERGICORESTRICOALGUMALIMENTO_QUAL '
+      ''
+      ''
+      ',CANDIDATO_NOMEESCOLA'
+      ',ATIVIDADE_EXTRAS '
+      ',FREQUENTAESCOLA '
+      ',ANO '
+      ',PERIODO '
+      ',TAMANHOCAMISETA '
+      ',REALIZAATENDIMENTOTERAPEUTICO '
+      ',REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      ',REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      ',REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      ',RECEBEBENEFICIO '
+      ',RECEBEBENEFICIO_QUAL'
+      ''
+      ''
+      ',DATA_REF'
+      'from PRONTUARIO '
+      
+        'where CANDIDATO  IN ( SELECT CANDIDATO FROM CANDIDATO WHERE  PES' +
+        'SOA = :PESSOA  )')
+    Left = 456
+    Top = 866
+    ParamData = <
+      item
+        Position = 1
+        Name = 'PESSOA'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end>
+    object sqlCandidato_ProntuarioPRONTUARIO: TFDAutoIncField
+      FieldName = 'PRONTUARIO'
+      Origin = 'PRONTUARIO'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object sqlCandidato_ProntuarioCANDIDATO: TIntegerField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+    end
+    object sqlCandidato_ProntuarioFAZUSODEMEDICAMENTOS: TIntegerField
+      FieldName = 'FAZUSODEMEDICAMENTOS'
+      Origin = 'FAZUSODEMEDICAMENTOS'
+    end
+    object sqlCandidato_ProntuarioFAZUSODEMEDICAMENTOS_QUAL: TStringField
+      FieldName = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Origin = 'FAZUSODEMEDICAMENTOS_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioALERGICOALGUMMEDICAMENTO: TIntegerField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO'
+      Origin = 'ALERGICOALGUMMEDICAMENTO'
+    end
+    object sqlCandidato_ProntuarioALERGICOALGUMMEDICAMENTO_QUAL: TStringField
+      FieldName = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Origin = 'ALERGICOALGUMMEDICAMENTO_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE: TIntegerField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE'
+    end
+    object sqlCandidato_ProntuarioPOSSUIBILHETEESPECIALTRANSPORTE_QUAL: TStringField
+      FieldName = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Origin = 'POSSUIBILHETEESPECIALTRANSPORTE_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA: TIntegerField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA'
+    end
+    object sqlCandidato_ProntuarioRECEBEPROGRAMATRANSFERENCIARENDA_QUAL: TStringField
+      FieldName = 'RECEBEPROGRAMATRANSFERENCIARENDA_QUAL'
+      Origin = 'RECEBEPROGRAMATRANSFERENCIARENDA_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioAUTORIZADOIREMBORASOZINHO: TIntegerField
+      FieldName = 'AUTORIZADOIREMBORASOZINHO'
+      Origin = 'AUTORIZADOIREMBORASOZINHO'
+    end
+    object sqlCandidato_ProntuarioAUTORIZADOSERFILMADOFOTOGRAFADO: TIntegerField
+      FieldName = 'AUTORIZADOSERFILMADOFOTOGRAFADO'
+      Origin = 'AUTORIZADOSERFILMADOFOTOGRAFADO'
+    end
+    object sqlCandidato_ProntuarioAUTORIZADOPARTICIPARATIVIDADESEXTERNAS: TIntegerField
+      FieldName = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS'
+      Origin = 'AUTORIZADOPARTICIPARATIVIDADESEXTERNAS'
+    end
+    object sqlCandidato_ProntuarioCOMPARECERDIARIAMENTE: TIntegerField
+      FieldName = 'COMPARECERDIARIAMENTE'
+      Origin = 'COMPARECERDIARIAMENTE'
+    end
+    object sqlCandidato_ProntuarioPERIODOADAPTACO: TStringField
+      FieldName = 'PERIODOADAPTACO'
+      Origin = 'PERIODOADAPTACO'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioDIASINDICADOSFREQUENCIA: TStringField
+      FieldName = 'DIASINDICADOSFREQUENCIA'
+      Origin = 'DIASINDICADOSFREQUENCIA'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioPODERAALMOCARORGANIZACO: TIntegerField
+      FieldName = 'PODERAALMOCARORGANIZACO'
+      Origin = 'PODERAALMOCARORGANIZACO'
+    end
+    object sqlCandidato_ProntuarioPODERAALMOCARORGANIZACO_MOTIVO: TStringField
+      FieldName = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Origin = 'PODERAALMOCARORGANIZACO_MOTIVO'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO: TIntegerField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO'
+    end
+    object sqlCandidato_ProntuarioALERGICORESTRICOALGUMALIMENTO_QUAL: TStringField
+      FieldName = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Origin = 'ALERGICORESTRICOALGUMALIMENTO_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioDATA_REF: TSQLTimeStampField
+      FieldName = 'DATA_REF'
+      Origin = 'DATA_REF'
+    end
+    object sqlCandidato_ProntuarioCANDIDATO_NOMEESCOLA: TStringField
+      FieldName = 'CANDIDATO_NOMEESCOLA'
+      Origin = 'CANDIDATO_NOMEESCOLA'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioATIVIDADE_EXTRAS: TStringField
+      FieldName = 'ATIVIDADE_EXTRAS'
+      Origin = 'ATIVIDADE_EXTRAS'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioFREQUENTAESCOLA: TIntegerField
+      FieldName = 'FREQUENTAESCOLA'
+      Origin = 'FREQUENTAESCOLA'
+    end
+    object sqlCandidato_ProntuarioANO: TStringField
+      FieldName = 'ANO'
+      Origin = 'ANO'
+    end
+    object sqlCandidato_ProntuarioPERIODO: TIntegerField
+      FieldName = 'PERIODO'
+      Origin = 'PERIODO'
+    end
+    object sqlCandidato_ProntuarioTAMANHOCAMISETA: TIntegerField
+      FieldName = 'TAMANHOCAMISETA'
+      Origin = 'TAMANHOCAMISETA'
+    end
+    object sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO: TIntegerField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO'
+    end
+    object sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_QUAL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_QUAL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_DOUTOR: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_DOUTOR'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioREALIZAATENDIMENTOTERAPEUTICO_TEL: TStringField
+      FieldName = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Origin = 'REALIZAATENDIMENTOTERAPEUTICO_TEL'
+      Size = 255
+    end
+    object sqlCandidato_ProntuarioRECEBEBENEFICIO: TIntegerField
+      FieldName = 'RECEBEBENEFICIO'
+      Origin = 'RECEBEBENEFICIO'
+    end
+    object sqlCandidato_ProntuarioRECEBEBENEFICIO_QUAL: TStringField
+      FieldName = 'RECEBEBENEFICIO_QUAL'
+      Origin = 'RECEBEBENEFICIO_QUAL'
+      Size = 255
+    end
+  end
+  object dspProntuario_Endereco: TDataSetProvider
+    DataSet = sqlProntuario_Endereco
+    Left = 536
+    Top = 1010
+  end
+  object cdsProntuario_Endereco: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'MATRICULA'
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        DataType = ftWideString
+        Name = 'NOME'
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    ProviderName = 'dspProntuario_Endereco'
+    Left = 616
+    Top = 1010
+    object cdsProntuario_EnderecoCANDIDATO: TAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ProviderFlags = [pfInWhere]
+      ReadOnly = True
+    end
+    object cdsProntuario_EnderecoTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Size = 15
+    end
+    object cdsProntuario_EnderecoLOCATARIO: TStringField
+      FieldName = 'LOCATARIO'
+      Origin = 'LOCATARIO'
+      Size = 255
+    end
+    object cdsProntuario_EnderecoLOCALIDADE: TIntegerField
+      FieldName = 'LOCALIDADE'
+      Origin = 'LOCALIDADE'
+    end
+    object cdsProntuario_EnderecoUF: TIntegerField
+      FieldName = 'UF'
+      Origin = 'UF'
+    end
+    object cdsProntuario_EnderecoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Size = 11
+    end
+    object cdsProntuario_EnderecoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 100
+    end
+    object cdsProntuario_EnderecoNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+    end
+    object cdsProntuario_EnderecoNOME_LOCALIDADE: TStringField
+      FieldName = 'NOME_LOCALIDADE'
+      Origin = 'NOME_LOCALIDADE'
+      Size = 100
+    end
+    object cdsProntuario_EnderecoSIGLA: TStringField
+      FieldName = 'SIGLA'
+      Origin = 'SIGLA'
+      Size = 15
+    end
+  end
+  object dsProntuario_Endereco: TDataSource
+    DataSet = cdsProntuario_Endereco
+    Left = 696
+    Top = 1010
+  end
+  object sqlProntuario_Endereco: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlProntuario_Endereco**/'
+      'DECLARE @MATRICULA INT = :MATRICULA;'
+      'DECLARE @NOME VARCHAR(50) = :NOME;'
+      ''
+      ''
+      'SELECT'
+      ' CANDIDATO.CANDIDATO'
+      ',ENDERECO.TIPO'
+      ',ENDERECO.LOCATARIO'
+      ',ENDERECO.LOCALIDADE'
+      ',ENDERECO.UF'
+      ',ENDERECO.CEP'
+      ',ENDERECO.BAIRRO'
+      ',ENDERECO.NUMERO'
+      ''
+      ',LOCALIDADE.NOME_LOCALIDADE'
+      ',UF.SIGLA'
+      ''
+      '      FROM PESSOA'
+      'INNER JOIN CANDIDATO ON PESSOA.PESSOA=CANDIDATO.PESSOA'
+      'INNER JOIN ALUNO ON CANDIDATO.CANDIDATO = ALUNO.CANDIDATO'
+      ''
+      
+        'INNER JOIN ENDERECOPESSOA ON PESSOA.PESSOA = ENDERECOPESSOA.PESS' +
+        'OA'
+      
+        'INNER JOIN ENDERECO ON ENDERECO.ENDERECO = ENDERECOPESSOA.ENDERE' +
+        'CO'
+      ''
+      
+        'INNER JOIN LOCALIDADE ON ENDERECO.LOCALIDADE = LOCALIDADE.LOCALI' +
+        'DADE'
+      'INNER JOIN UF ON ENDERECO.UF = UF.UF'
+      ''
+      ''
+      ''
+      'WHERE 1=1'
+      ''
+      'AND (@NOME = '#39#39' OR  CANDIDATO.NOME LIKE '#39'%'#39'+@NOME+'#39'%'#39')'
+      
+        'AND (ISNULL(ALUNO.MATRICULA,0) = CASE WHEN @MATRICULA> 0 THEN @M' +
+        'ATRICULA ELSE ISNULL(ALUNO.MATRICULA,0)  END)'
+      '')
+    Left = 464
+    Top = 1010
+    ParamData = <
+      item
+        Position = 1
+        Name = 'MATRICULA'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        Position = 2
+        Name = 'NOME'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    object sqlProntuario_EnderecoCANDIDATO: TFDAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ReadOnly = True
+    end
+    object sqlProntuario_EnderecoTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Size = 15
+    end
+    object sqlProntuario_EnderecoLOCATARIO: TStringField
+      FieldName = 'LOCATARIO'
+      Origin = 'LOCATARIO'
+      Size = 255
+    end
+    object sqlProntuario_EnderecoLOCALIDADE: TIntegerField
+      FieldName = 'LOCALIDADE'
+      Origin = 'LOCALIDADE'
+    end
+    object sqlProntuario_EnderecoUF: TIntegerField
+      FieldName = 'UF'
+      Origin = 'UF'
+    end
+    object sqlProntuario_EnderecoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Size = 11
+    end
+    object sqlProntuario_EnderecoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 100
+    end
+    object sqlProntuario_EnderecoNUMERO: TStringField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+    end
+    object sqlProntuario_EnderecoNOME_LOCALIDADE: TStringField
+      FieldName = 'NOME_LOCALIDADE'
+      Origin = 'NOME_LOCALIDADE'
+      Size = 100
+    end
+    object sqlProntuario_EnderecoSIGLA: TStringField
+      FieldName = 'SIGLA'
+      Origin = 'SIGLA'
+      Size = 15
+    end
+  end
+  object dspProntuario_Contato: TDataSetProvider
+    DataSet = sqlProntuario_Contato
+    Left = 536
+    Top = 978
+  end
+  object cdsProntuario_Contato: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'MATRICULA'
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        DataType = ftWideString
+        Name = 'NOME'
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    ProviderName = 'dspProntuario_Contato'
+    Left = 616
+    Top = 978
+    object cdsProntuario_ContatoCANDIDATO: TAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ProviderFlags = [pfInWhere]
+      ReadOnly = True
+    end
+    object cdsProntuario_ContatoTIPO: TIntegerField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+    end
+    object cdsProntuario_ContatoVALOR: TStringField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Size = 255
+    end
+  end
+  object dsProntuario_Contato: TDataSource
+    DataSet = cdsProntuario_Contato
+    Left = 696
+    Top = 978
+  end
+  object sqlProntuario_Contato: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlProntuario_Contato**/'
+      'DECLARE @MATRICULA INT = :MATRICULA;'
+      'DECLARE @NOME VARCHAR(50) = :NOME;'
+      ''
+      'SELECT'
+      ' CANDIDATO.CANDIDATO'
+      ',CONTATO.TIPO'
+      ',CONTATO.VALOR'
+      ''
+      '      FROM PESSOA'
+      'INNER JOIN CANDIDATO ON PESSOA.PESSOA=CANDIDATO.PESSOA'
+      'INNER JOIN ALUNO ON CANDIDATO.CANDIDATO = ALUNO.CANDIDATO'
+      'INNER JOIN CONTATO ON PESSOA.PESSOA = CONTATO.PESSOA'
+      ''
+      'WHERE 1=1'
+      ''
+      'AND (@NOME = '#39#39' OR  CANDIDATO.NOME LIKE '#39'%'#39'+@NOME+'#39'%'#39')'
+      
+        'AND (ISNULL(ALUNO.MATRICULA,0) = CASE WHEN @MATRICULA> 0 THEN @M' +
+        'ATRICULA ELSE ISNULL(ALUNO.MATRICULA,0)  END)'
+      '')
+    Left = 464
+    Top = 978
+    ParamData = <
+      item
+        Position = 1
+        Name = 'MATRICULA'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '2018017649'
+      end
+      item
+        Position = 2
+        Name = 'NOME'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = 'a'
+      end>
+    object sqlProntuario_ContatoCANDIDATO: TFDAutoIncField
+      FieldName = 'CANDIDATO'
+      Origin = 'CANDIDATO'
+      ReadOnly = True
+    end
+    object sqlProntuario_ContatoTIPO: TIntegerField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+    end
+    object sqlProntuario_ContatoVALOR: TStringField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Size = 255
+    end
+  end
+  object dspListarFuncionarios: TDataSetProvider
+    DataSet = sqlListarFuncionarios
+    Left = 504
+    Top = 796
+  end
+  object cdsListarFuncionarios: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'Nome'
+        ParamType = ptInput
+        Value = 'a'
+      end
+      item
+        DataType = ftString
+        Name = 'Data_Ini'
+        ParamType = ptInput
+        Value = '2018-01-01'
+      end
+      item
+        DataType = ftString
+        Name = 'Data_Fim'
+        ParamType = ptInput
+        Value = '2018-01-01'
+      end>
+    ProviderName = 'dspListarFuncionarios'
+    Left = 600
+    Top = 796
+    object cdsListarFuncionariosFUNCIONARIO: TAutoIncField
+      FieldName = 'FUNCIONARIO'
+      ReadOnly = True
+    end
+    object cdsListarFuncionariosNOME: TStringField
+      FieldName = 'NOME'
+      Size = 255
+    end
+  end
+  object dsListarFuncionarios: TDataSource
+    DataSet = cdsListarFuncionarios
+    Left = 696
+    Top = 796
+  end
+  object sqlListarFuncionarios: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlListarFuncionario**/'
+      'SELECT '
+      ' FUNCIONARIO.FUNCIONARIO'
+      ',FUNCIONARIO.NOME '
+      'FROM FUNCIONARIO'
+      'INNER JOIN PESSOA'#9' ON FUNCIONARIO.PESSOA = PESSOA.PESSOA'
+      ''
+      '')
+    Left = 424
+    Top = 796
+    ParamData = <
+      item
+        Position = 1
+        Name = 'Nome'
+        DataType = ftString
+        ParamType = ptInput
+        Value = 'a'
+      end
+      item
+        Position = 2
+        Name = 'Data_Ini'
+        DataType = ftString
+        ParamType = ptInput
+        Value = '2018-01-01'
+      end
+      item
+        Position = 3
+        Name = 'Data_Fim'
+        DataType = ftString
+        ParamType = ptInput
+        Value = '2018-01-01'
+      end>
+    object sqlListarFuncionariosFUNCIONARIO: TFDAutoIncField
+      FieldName = 'FUNCIONARIO'
+      Origin = 'FUNCIONARIO'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object sqlListarFuncionariosNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 255
+    end
+  end
+  object sqlUsuarios: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlUsuarios**/'
+      'SELECT '
+      'USUARIO'
+      ',USR_LOGIN'
+      ',USR_SENHA'
+      ',PESSOA'
+      ',GRUPOACESSO'
+      ',FUNCIONARIO'
+      ',SITUACAO '
+      'FROM USUARIO'
+      
+        'where FUNCIONARIO IN (SELECT FUNCIONARIO  FROM FUNCIONARIO WHERE' +
+        ' PESSOA = :PESSOA)'
+      '')
+    Left = 736
+    Top = 240
+    ParamData = <
+      item
+        Position = 1
+        Name = 'PESSOA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end>
+    object sqlUsuariosUSUARIO: TFDAutoIncField
+      FieldName = 'USUARIO'
+      ReadOnly = True
+    end
+    object sqlUsuariosUSR_LOGIN: TStringField
+      FieldName = 'USR_LOGIN'
+      Size = 100
+    end
+    object sqlUsuariosUSR_SENHA: TStringField
+      FieldName = 'USR_SENHA'
+      Size = 100
+    end
+    object sqlUsuariosPESSOA: TIntegerField
+      FieldName = 'PESSOA'
+    end
+    object sqlUsuariosGRUPOACESSO: TIntegerField
+      FieldName = 'GRUPOACESSO'
+    end
+    object sqlUsuariosFUNCIONARIO: TIntegerField
+      FieldName = 'FUNCIONARIO'
+    end
+    object sqlUsuariosSITUACAO: TIntegerField
+      FieldName = 'SITUACAO'
+    end
+  end
+  object dspValidaLogin: TDataSetProvider
+    DataSet = sqlValidaLogin
+    Left = 824
+    Top = 376
+  end
+  object cdsValidaLogin: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'USR_LOGIN'
+        ParamType = ptInput
+        Value = '1'
+      end
+      item
+        DataType = ftWideString
+        Name = 'USR_SENHA'
+        ParamType = ptInput
+        Value = '1'
+      end>
+    ProviderName = 'dspValidaLogin'
+    Left = 896
+    Top = 376
+    object cdsValidaLoginGRUPOACESSO: TIntegerField
+      FieldName = 'GRUPOACESSO'
+    end
+  end
+  object dsUsuarios: TDataSource
+    DataSet = cdsUsuarios
+    Left = 976
+    Top = 240
+  end
+  object sqlGrupoAcesso: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlGrupoAcesso**/'
+      'SELECT*  FROM GRUPOACESSO')
+    Left = 736
+    Top = 312
+    ParamData = <
+      item
+        Position = 1
+        Name = 'FUNCIONARIO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 1
+      end>
+    object sqlGrupoAcessoGRUPOACESSO: TFDAutoIncField
+      FieldName = 'GRUPOACESSO'
+      Origin = 'GRUPOACESSO'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object sqlGrupoAcessoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 100
+    end
+  end
+  object dspGrupoAcesso: TDataSetProvider
+    DataSet = sqlGrupoAcesso
+    Left = 824
+    Top = 312
+  end
+  object cdsGrupoAcesso: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'FUNCIONARIO'
+        ParamType = ptInput
+        Value = 1
+      end>
+    ProviderName = 'dspGrupoAcesso'
+    Left = 912
+    Top = 312
+    object cdsGrupoAcessoGRUPOACESSO: TAutoIncField
+      FieldName = 'GRUPOACESSO'
+      ReadOnly = True
+    end
+    object cdsGrupoAcessoNOME: TStringField
+      FieldName = 'NOME'
+      Size = 100
+    end
+  end
+  object dsGrupoAcesso: TDataSource
+    DataSet = cdsGrupoAcesso
+    Left = 992
+    Top = 312
+  end
+  object sqlValidaLogin: TFDQuery
+    Connection = conSAAS1
+    SQL.Strings = (
+      '/**sqlValidaLogin**/'
+      'SELECT GRUPOACESSO  FROM USUARIO  where USR_LOGIN=:USR_LOGIN '
+      'AND USR_SENHA = :USR_SENHA'
+      ' AND SITUACAO = 1')
+    Left = 744
+    Top = 384
+    ParamData = <
+      item
+        Position = 1
+        Name = 'USR_LOGIN'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end
+      item
+        Position = 2
+        Name = 'USR_SENHA'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end>
+    object sqlValidaLoginGRUPOACESSO: TIntegerField
+      FieldName = 'GRUPOACESSO'
+    end
+  end
+  object dspUsuarios: TDataSetProvider
+    DataSet = sqlUsuarios
+    Left = 824
+    Top = 248
+  end
+  object cdsUsuarios: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'PESSOA'
+        ParamType = ptInput
+        Value = 1
+      end>
+    ProviderName = 'dspUsuarios'
+    Left = 912
+    Top = 248
+    object cdsUsuariosUSUARIO: TAutoIncField
+      FieldName = 'USUARIO'
+      ReadOnly = True
+    end
+    object cdsUsuariosUSR_LOGIN: TStringField
+      FieldName = 'USR_LOGIN'
+      Size = 100
+    end
+    object cdsUsuariosUSR_SENHA: TStringField
+      FieldName = 'USR_SENHA'
+      Size = 100
+    end
+    object cdsUsuariosPESSOA: TIntegerField
+      FieldName = 'PESSOA'
+    end
+    object cdsUsuariosGRUPOACESSO: TIntegerField
+      FieldName = 'GRUPOACESSO'
+    end
+    object cdsUsuariosFUNCIONARIO: TIntegerField
+      FieldName = 'FUNCIONARIO'
+    end
+    object cdsUsuariosSITUACAO: TIntegerField
+      FieldName = 'SITUACAO'
     end
   end
 end

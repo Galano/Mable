@@ -30,7 +30,7 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog, System.Actions,
   cxGroupBox, ppDB, ppDBPipe, ppParameter, ppDesignLayer, ppBands, ppCtrls,
   ppPrnabl, ppClass, ppCache, ppComm, ppRelatv, ppProd, ppReport, dateutils,
-  ppVar, dxGDIPlusClasses;
+  ppVar, dxGDIPlusClasses, uCadastroAluno, uCadastroFuncionario;
 
 type
   TfrmAcompanhamento = class(TfrmCadastroBase)
@@ -48,6 +48,12 @@ type
     dbcbAluno: TcxDBLookupComboBox;
     cbDataRetorno: TcxDBDateEdit;
     Label4: TLabel;
+    btnBuscarAluno: TButton;
+    Label5: TLabel;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    btnBuscarFunc: TButton;
+    dxBarLargeButton2: TdxBarLargeButton;
+    actEnviarEmail: TAction;
     procedure actNovoExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure actEditarExecute(Sender: TObject);
@@ -55,6 +61,9 @@ type
     procedure actSalvarExecute(Sender: TObject);
     procedure cbDataMovExit(Sender: TObject);
     procedure actCancelarExecute(Sender: TObject);
+    procedure btnBuscarAlunoClick(Sender: TObject);
+    procedure btnBuscarFuncClick(Sender: TObject);
+    procedure actEnviarEmailExecute(Sender: TObject);
   private
     procedure ValidarData;
     { Private declarations }
@@ -81,6 +90,22 @@ procedure TfrmAcompanhamento.actEditarExecute(Sender: TObject);
 begin
   inherited;
   dm_principal.cdsAcompanhamento.Edit;
+end;
+
+procedure TfrmAcompanhamento.actEnviarEmailExecute(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('Deseja enviar e-mail de observações para o aluno '+dm_principal.cdsAcompanhamentoNOME.AsString+'?',mtWarning,[mbYes,mbNo],1) =mrYes then
+  begin
+        DM_Principal.EnviarEmail('',
+                                 '',
+                                 dm_principal.cdsAcompanhamentoEMAIL.AsString,
+                                 'Informe de Acompanhamento',
+                                 dm_principal.cdsAcompanhamentoOBSERVACOES.AsString);
+
+  end;
+
+
 end;
 
 procedure TfrmAcompanhamento.actNovoExecute(Sender: TObject);
@@ -131,6 +156,29 @@ begin
 
 end;
 
+procedure TfrmAcompanhamento.btnBuscarAlunoClick(Sender: TObject);
+var
+  frmCadastroAluno: TfrmCadastroAluno;
+begin
+  frmCadastroAluno := TfrmCadastroAluno.create(self);
+  frmCadastroAluno.ModoBuscar := True;
+  frmCadastroAluno.ShowModal;
+  dbcbAluno.EditValue :=  frmCadastroAluno.AlunoSelecionado;
+  frmCadastroAluno.Free;
+end;
+
+procedure TfrmAcompanhamento.btnBuscarFuncClick(Sender: TObject);
+var
+  frmCadastroFuncionario: TfrmCadastroFuncionario;
+begin
+  frmCadastroFuncionario := TfrmCadastroFuncionario.create(self);
+  frmCadastroFuncionario.ModoBuscar := true;
+  frmCadastroFuncionario.ShowModal;
+  frmCadastroFuncionario.Free;
+
+
+end;
+
 procedure TfrmAcompanhamento.cbDataMovExit(Sender: TObject);
 begin
   inherited;
@@ -154,6 +202,9 @@ begin
   inherited;
   dm_principal.cdsListarAlunos.Close;
   dm_principal.cdsListarAlunos.Open;
+
+  dm_principal.cdsListarFuncionarios.Close;
+  dm_principal.cdsListarFuncionarios.Open;
 
   dm_principal.cdsAcompanhamento.Close;
   dm_principal.cdsAcompanhamento.Open;

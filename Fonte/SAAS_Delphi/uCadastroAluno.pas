@@ -30,7 +30,8 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog, System.Actions,
   cxGroupBox, ppDB, ppDBPipe, ppParameter, ppDesignLayer, ppBands, ppCtrls,
   ppPrnabl, ppClass, ppCache, ppComm, ppRelatv, ppProd, ppReport,
-  cxImageComboBox, ppVar, dxGDIPlusClasses;
+  cxImageComboBox, ppVar, dxGDIPlusClasses, Vcl.DBCtrls, cxButtons, cxImage,
+  cxRadioGroup, cxLabel;
 
 type
   TfrmCadastroAluno = class(TfrmCadastroCandidato)
@@ -55,6 +56,7 @@ type
     vwGridBaseDATA_MATRICULA: TcxGridDBColumn;
     cdsTelaAlunoIDADE: TIntegerField;
     cdsTelaAlunoCEP: TStringField;
+    cdsTelaAlunoALUNO: TAutoIncField;
     procedure actPesquisarExecute(Sender: TObject);
     procedure CarregarDados(id_pessoa : integer );
     procedure actEditarExecute(Sender: TObject);
@@ -62,10 +64,20 @@ type
     procedure actSalvarExecute(Sender: TObject);
     procedure pcControleTelaPageChanging(Sender: TObject; NewPage: TcxTabSheet;
       var AllowChange: Boolean);
+    procedure FormShow(Sender: TObject);
+    procedure vwGridBaseCellClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
+    procedure rgTipoConsultaClick(Sender: TObject);
+    procedure edtConsultaKeyPress(Sender: TObject; var Key: Char);
 
   private
+    fModoBuscar: Boolean;
+    fAlunoSelecionado : integer;
     { Private declarations }
   public
+    property ModoBuscar: boolean read fModoBuscar write fModoBuscar;
+    property AlunoSelecionado: integer read fAlunoSelecionado write fAlunoSelecionado;
     { Public declarations }
   end;
 
@@ -78,8 +90,16 @@ implementation
 
 procedure TfrmCadastroAluno.actEditarExecute(Sender: TObject);
 begin
-  inherited;
-  CarregarDados( TClientDataSet(dsBase.DataSet).FieldByName('PESSOA').AsInteger);   
+  if not ModoBuscar then
+    inherited
+  else
+  begin
+    AlunoSelecionado := cdsTelaAlunoALUNO.AsInteger;
+    close;
+  end;
+
+
+  CarregarDados( TClientDataSet(dsBase.DataSet).FieldByName('PESSOA').AsInteger);
   dm_principal.cdsPessoa.Edit;
   dm_principal.cdsCandidato.Edit;
   dm_principal.cdsAluno.Edit;
@@ -152,11 +172,56 @@ begin
 
 end;
 
+procedure TfrmCadastroAluno.edtConsultaKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+if rgTipoConsulta.ItemIndex = 1 then
+begin
+  if  not( Key in ['0'..'9', Chr(8)] ) then
+          Key := #0
+end;
+
+end;
+
+procedure TfrmCadastroAluno.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  if ModoBuscar then
+  begin
+    btnNovo.Visible := ivNever;
+    btnEditar.Visible := ivNever;
+    btnExcluir.Visible := ivNever;
+    btnSalvar.Visible := ivNever;
+    btnCancelar.Visible := ivNever;
+    btnGerarMatricula.Visible := ivNever;
+    btnImprimirRel.Visible := ivNever;
+    pcDetalheCandidato.Visible := false;
+
+  end;
+end;
+
 procedure TfrmCadastroAluno.pcControleTelaPageChanging(Sender: TObject;
   NewPage: TcxTabSheet; var AllowChange: Boolean);
 begin
   inherited;
   btnGerarMatricula.Visible := ivNever;
+end;
+
+procedure TfrmCadastroAluno.rgTipoConsultaClick(Sender: TObject);
+begin
+  inherited;
+   edtConsulta.Text := '';
+end;
+
+procedure TfrmCadastroAluno.vwGridBaseCellClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+  if not ModoBuscar then
+    inherited;
+
+
 end;
 
 end.

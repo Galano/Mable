@@ -10,9 +10,12 @@ object frmCadastroBase: TfrmCadastroBase
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  Visible = True
+  WindowState = wsMaximized
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
@@ -45,21 +48,28 @@ object frmCadastroBase: TfrmCadastroBase
     Properties.ActivePage = tsDados
     Properties.CustomButtons.Buttons = <>
     LookAndFeel.NativeStyle = False
-    ClientRectBottom = 244
-    ClientRectRight = 738
-    ClientRectTop = 24
+    ClientRectBottom = 242
+    ClientRectLeft = 2
+    ClientRectRight = 736
+    ClientRectTop = 26
     object tsDados: TcxTabSheet
       Caption = 'Dados'
       ImageIndex = 0
+      ExplicitLeft = 0
+      ExplicitTop = 24
+      ExplicitWidth = 738
+      ExplicitHeight = 220
       object cxGridBase: TcxGrid
         Left = 0
         Top = 0
-        Width = 738
-        Height = 220
+        Width = 734
+        Height = 216
         Align = alClient
         PopupMenu = ppMenu
         TabOrder = 0
         LookAndFeel.NativeStyle = False
+        ExplicitWidth = 738
+        ExplicitHeight = 220
         object vwGridBase: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           OnCellDblClick = vwGridBaseCellDblClick
@@ -6651,7 +6661,7 @@ object frmCadastroBase: TfrmCadastroBase
       Background1.Brush.Style = bsClear
       Background2.Brush.Style = bsClear
       mmBottomOffset = 0
-      mmHeight = 5556
+      mmHeight = 0
       mmPrintPosition = 0
     end
     object ppFooterBand1: TppFooterBand
@@ -6705,7 +6715,6 @@ object frmCadastroBase: TfrmCadastroBase
     end
   end
   object ppDbBase: TppDBPipeline
-    DataSource = dsBase
     UserName = 'DbBase'
     Left = 426
     Top = 249

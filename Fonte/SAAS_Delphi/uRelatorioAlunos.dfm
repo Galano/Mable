@@ -19,17 +19,18 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
     ExplicitTop = 95
     ExplicitWidth = 673
     ExplicitHeight = 366
-    ClientRectBottom = 366
-    ClientRectRight = 673
+    ClientRectBottom = 364
+    ClientRectRight = 671
     inherited tsDados: TcxTabSheet
-      ExplicitTop = 24
-      ExplicitWidth = 673
-      ExplicitHeight = 342
+      ExplicitLeft = 2
+      ExplicitTop = 26
+      ExplicitWidth = 669
+      ExplicitHeight = 338
       inherited cxGridBase: TcxGrid
-        Width = 673
-        Height = 342
-        ExplicitWidth = 673
-        ExplicitHeight = 342
+        Width = 669
+        Height = 338
+        ExplicitWidth = 669
+        ExplicitHeight = 338
         inherited vwGridBase: TcxGridDBTableView
           object vwGridBaseSEL: TcxGridDBColumn
             DataBinding.FieldName = 'SEL'
@@ -102,7 +103,7 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
       ExplicitLeft = 2
       ExplicitTop = 26
       ExplicitWidth = 669
-      ExplicitHeight = 352
+      ExplicitHeight = 338
     end
   end
   inherited ActionList1: TActionList
@@ -132,8 +133,11 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
     Top = 232
   end
   inherited ppRelatorioBase: TppReport
-    Left = 474
-    Top = 185
+    Template.FileName = 
+      'C:\Users\BrunoGalanoSilva\Documents\Pos-Engenharia\SAAF\SAAS_Del' +
+      'phi\rel_alun.rtm'
+    Left = 490
+    Top = 177
     DataPipelineName = 'ppDbBase'
     inherited ppTituloRelatorio: TppHeaderBand
       mmHeight = 33338
@@ -253,7 +257,7 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
         Transparent = True
         DataPipelineName = 'ppDbBase'
         mmHeight = 4763
-        mmLeft = 83081
+        mmLeft = 83079
         mmTop = 0
         mmWidth = 9525
         BandType = 4
@@ -292,7 +296,7 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
         Transparent = True
         DataPipelineName = 'ppDbBase'
         mmHeight = 4763
-        mmLeft = 27254
+        mmLeft = 27252
         mmTop = 0
         mmWidth = 53975
         BandType = 4
@@ -352,142 +356,8 @@ inherited frmRelatorioAlunos: TfrmRelatorioAlunos
     end
   end
   inherited ppDbBase: TppDBPipeline
-    Left = 474
-    Top = 233
-    object ppDbBaseppField1: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'SEL'
-      FieldName = 'SEL'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 0
-      Position = 0
-    end
-    object ppDbBaseppField2: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'PESSOA'
-      FieldName = 'PESSOA'
-      FieldLength = 0
-      DataType = dtLongint
-      DisplayWidth = 10
-      Position = 1
-    end
-    object ppDbBaseppField3: TppField
-      FieldAlias = 'CPF_CNPJ'
-      FieldName = 'CPF_CNPJ'
-      FieldLength = 15
-      DisplayWidth = 15
-      Position = 2
-    end
-    object ppDbBaseppField4: TppField
-      FieldAlias = 'RG'
-      FieldName = 'RG'
-      FieldLength = 15
-      DisplayWidth = 15
-      Position = 3
-    end
-    object ppDbBaseppField5: TppField
-      FieldAlias = 'EMAIL'
-      FieldName = 'EMAIL'
-      FieldLength = 255
-      DisplayWidth = 255
-      Position = 4
-    end
-    object ppDbBaseppField6: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'CANDIDATO'
-      FieldName = 'CANDIDATO'
-      FieldLength = 0
-      DataType = dtLongint
-      DisplayWidth = 10
-      Position = 5
-    end
-    object ppDbBaseppField7: TppField
-      FieldAlias = 'NOME'
-      FieldName = 'NOME'
-      FieldLength = 255
-      DisplayWidth = 255
-      Position = 6
-    end
-    object ppDbBaseppField8: TppField
-      FieldAlias = 'DATA_CADASTRO'
-      FieldName = 'DATA_CADASTRO'
-      FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
-      Position = 7
-    end
-    object ppDbBaseppField9: TppField
-      FieldAlias = 'DATA_NASCIMENTO'
-      FieldName = 'DATA_NASCIMENTO'
-      FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
-      Position = 8
-    end
-    object ppDbBaseppField10: TppField
-      FieldAlias = 'TIPO'
-      FieldName = 'TIPO'
-      FieldLength = 15
-      DisplayWidth = 15
-      Position = 9
-    end
-    object ppDbBaseppField11: TppField
-      FieldAlias = 'LOCATARIO'
-      FieldName = 'LOCATARIO'
-      FieldLength = 255
-      DisplayWidth = 255
-      Position = 10
-    end
-    object ppDbBaseppField12: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'LOCALIDADE'
-      FieldName = 'LOCALIDADE'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 11
-    end
-    object ppDbBaseppField13: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'UF'
-      FieldName = 'UF'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 12
-    end
-    object ppDbBaseppField14: TppField
-      FieldAlias = 'CEP'
-      FieldName = 'CEP'
-      FieldLength = 11
-      DisplayWidth = 11
-      Position = 13
-    end
-    object ppDbBaseppField15: TppField
-      FieldAlias = 'BAIRRO'
-      FieldName = 'BAIRRO'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 14
-    end
-    object ppDbBaseppField16: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'IDADE'
-      FieldName = 'IDADE'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 15
-    end
-    object ppDbBaseppField17: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'MATRICULA'
-      FieldName = 'MATRICULA'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 16
-    end
+    DataSource = dsBase
+    Left = 482
+    Top = 265
   end
 end

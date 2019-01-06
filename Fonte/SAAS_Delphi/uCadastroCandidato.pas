@@ -31,7 +31,8 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog, System.Actions,
   cxGroupBox, ppDB, ppDBPipe, ppParameter, ppDesignLayer, ppBands, ppCtrls,
   ppPrnabl, ppClass, ppCache, ppComm, ppRelatv, ppProd, ppReport,
-  cxImageComboBox, ppVar, dxGDIPlusClasses;
+  cxImageComboBox, ppVar, dxGDIPlusClasses, cxImage, Vcl.DBCtrls, cxButtons,
+  cxLabel, cxRadioGroup;
 
 type
   TfrmCadastroCandidato = class(TfrmCadastroBase)
@@ -125,11 +126,9 @@ type
     cxDBTextEdit5: TcxDBTextEdit;
     Label5: TLabel;
     Label9: TLabel;
-    Label10: TLabel;
     tsNecessidades: TcxTabSheet;
     edtConsulta: TcxTextEdit;
     cbGenero: TcxDBImageComboBox;
-    cbEtinia2: TcxDBImageComboBox;
     cxDBTextEdit4: TcxDBTextEdit;
     Label11: TLabel;
     cxGridDBTableView1NUMERO: TcxGridDBColumn;
@@ -156,6 +155,99 @@ type
     vwNecessidadesCANDIDATO_NECESSIDADE: TcxGridDBColumn;
     vwNecessidadesNECESSIDADE: TcxGridDBColumn;
     vwNecessidadesCANDIDATO: TcxGridDBColumn;
+    edtResponsavel: TcxDBTextEdit;
+    lblResponsavel: TLabel;
+    edtParentesco: TcxDBTextEdit;
+    Label10: TLabel;
+    cxDBTextEdit6: TcxDBTextEdit;
+    Label12: TLabel;
+    cxDBTextEdit7: TcxDBTextEdit;
+    Label13: TLabel;
+    edtImage: TcxDBImage;
+    tsProntuario: TcxTabSheet;
+    DBMemo1: TDBMemo;
+    btnCarregarFoto: TcxButton;
+    btnLimparFoto: TcxButton;
+    SaveDialog1: TSaveDialog;
+    cxDBTextEdit8: TcxDBTextEdit;
+    Label14: TLabel;
+    tsMedico: TcxTabSheet;
+    cxGroupBox1: TcxGroupBox;
+    cxLabel2: TcxLabel;
+    rgFrequentaEscola: TcxDBRadioGroup;
+    cxDBRadioGroup1: TcxDBRadioGroup;
+    cxDBTextEdit9: TcxDBTextEdit;
+    Label15: TLabel;
+    cxDBTextEdit10: TcxDBTextEdit;
+    Label16: TLabel;
+    Label17: TLabel;
+    cxDBTextEdit11: TcxDBTextEdit;
+    cxGroupBox2: TcxGroupBox;
+    cxDBRadioGroup6: TcxDBRadioGroup;
+    Label23: TLabel;
+    cxDBTextEdit17: TcxDBTextEdit;
+    Label24: TLabel;
+    cxDBTextEdit18: TcxDBTextEdit;
+    cxDBTextEdit19: TcxDBTextEdit;
+    Label25: TLabel;
+    cxGroupBox5: TcxGroupBox;
+    Label18: TLabel;
+    cxDBRadioGroup2: TcxDBRadioGroup;
+    cxDBTextEdit12: TcxDBTextEdit;
+    cxTabSheet1: TcxTabSheet;
+    cxGroupBox6: TcxGroupBox;
+    cxDBRadioGroup7: TcxDBRadioGroup;
+    cxDBRadioGroup8: TcxDBRadioGroup;
+    cxGroupBox4: TcxGroupBox;
+    Label21: TLabel;
+    cxDBRadioGroup5: TcxDBRadioGroup;
+    cxDBTextEdit15: TcxDBTextEdit;
+    cxGroupBox3: TcxGroupBox;
+    Label22: TLabel;
+    cxDBRadioGroup4: TcxDBRadioGroup;
+    cxDBTextEdit16: TcxDBTextEdit;
+    cxGroupBox7: TcxGroupBox;
+    Label19: TLabel;
+    cxDBRadioGroup9: TcxDBRadioGroup;
+    cxDBTextEdit13: TcxDBTextEdit;
+    cxGroupBox11: TcxGroupBox;
+    cxDBRadioGroup3: TcxDBRadioGroup;
+    cxTabSheet2: TcxTabSheet;
+    cxGroupBox12: TcxGroupBox;
+    Label20: TLabel;
+    cxDBRadioGroup13: TcxDBRadioGroup;
+    cxDBTextEdit14: TcxDBTextEdit;
+    cxGroupBox13: TcxGroupBox;
+    Label26: TLabel;
+    cxDBRadioGroup14: TcxDBRadioGroup;
+    cxDBTextEdit20: TcxDBTextEdit;
+    cxGroupBox14: TcxGroupBox;
+    Label27: TLabel;
+    cxDBRadioGroup15: TcxDBRadioGroup;
+    cxDBTextEdit21: TcxDBTextEdit;
+    cxDBTextEdit23: TcxDBTextEdit;
+    Label29: TLabel;
+    cxDBDateEdit3: TcxDBDateEdit;
+    cxDBDateEdit4: TcxDBDateEdit;
+    Label28: TLabel;
+    Label30: TLabel;
+    cxDBTextEdit22: TcxDBTextEdit;
+    Label31: TLabel;
+    cxDBTextEdit24: TcxDBTextEdit;
+    Label32: TLabel;
+    btnMarcarTodos: TMenuItem;
+    GroupBox1: TGroupBox;
+    cxGroupBox9: TcxGroupBox;
+    cxDBRadioGroup11: TcxDBRadioGroup;
+    cxGroupBox8: TcxGroupBox;
+    cxDBRadioGroup10: TcxDBRadioGroup;
+    cxGroupBox10: TcxGroupBox;
+    cxDBRadioGroup12: TcxDBRadioGroup;
+    cxGroupBox15: TcxGroupBox;
+    btnAvancar: TcxButton;
+    btnVoltar: TcxButton;
+    actAvancar: TAction;
+    actVoltar: TAction;
     procedure actPesquisarExecute(Sender: TObject);
     procedure actNovoExecute(Sender: TObject);
     procedure actSalvarExecute(Sender: TObject);
@@ -192,6 +284,12 @@ type
     procedure vwNecessidadesFocusedRecordChanged(Sender: TcxCustomGridTableView;
       APrevFocusedRecord, AFocusedRecord: TcxCustomGridRecord;
       ANewItemRecordFocusingChanged: Boolean);
+    procedure btnCarregarFotoClick(Sender: TObject);
+    procedure btnLimparFotoClick(Sender: TObject);
+    procedure btnMarcarTodosClick(Sender: TObject);
+    procedure Detalhe_MudarAba(Voltar : boolean);
+    procedure actVoltarExecute(Sender: TObject);
+    procedure actAvancarExecute(Sender: TObject);
 
   private
     QtdSelecionado : Integer;
@@ -215,6 +313,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastroCandidato.actAvancarExecute(Sender: TObject);
+begin
+  inherited;
+  Detalhe_MudarAba(False);
+end;
 
 procedure TfrmCadastroCandidato.actCancelarExecute(Sender: TObject);
 begin
@@ -269,8 +373,9 @@ end;
 procedure TfrmCadastroCandidato.actContatoSalvarExecute(Sender: TObject);
 begin
   inherited;
-  if dm_principal.cdsContatoVALOR.AsString = '' then
-    exit;
+//  dm_principal.cdsContatoVALOR.post;
+//  if dm_principal.cdsContatoVALOR.AsString = '' then
+//    exit;
 
   AtualizaModoTela_Contatos(ModoPesquisa);
   dm_principal.cdsContato.Post;
@@ -282,6 +387,7 @@ begin
   CarregarDados( TClientDataSet(dsBase.DataSet).FieldByName('PESSOA').AsInteger);
   dm_principal.cdsPessoa.Edit ;
   dm_principal.cdsCandidato.Edit;
+  dm_principal.cdsCandidato_Prontuario.Edit;
 
 
 //  if dm_principal.cdsEnderecoPessoa.RecordCount = 0 then
@@ -353,6 +459,7 @@ begin
   dm_principal.cdsAluno.Close;
   dm_principal.cdsAluno.Open;
   actGerarMatricula.Enabled := False;
+  btnMarcarTodos.Enabled := True;
 end;
 
 procedure TfrmCadastroCandidato.actNecessidadeNovoExecute(Sender: TObject);
@@ -402,6 +509,9 @@ begin
   dm_principal.cdsPessoaPESSOA.AsInteger := 0;
   dm_principal.cdsCandidatoCANDIDATO.AsInteger := 0;
   dm_principal.cdsCandidatoDATA_CADASTRO.AsDateTime := now;
+  dm_principal.cdsCandidato_Prontuario.Append;
+  dm_principal.cdsCandidato_ProntuarioCANDIDATO.AsInteger := 0;
+  dm_principal.cdsCandidato_ProntuarioDATA_REF.AsDateTime := now;
 
   pcDetalheCandidato.ActivePageIndex := 0;
 
@@ -438,10 +548,11 @@ begin
         begin
            IF dm_principal.cdsTelaCandidatoSEL.AsInteger = 1 then
            begin
-              IdAluno := dm_principal.ProximoID('ALUNO');
+              //IdAluno := dm_principal.ProximoID('ALUNO');
+              IdAluno := dm_principal.cdsTelaCandidatoCANDIDATO.AsInteger;
               dm_principal.cdsAluno.Append;
               dm_principal.cdsAlunoCANDIDATO.AsInteger := dm_principal.cdsTelaCandidatoCANDIDATO.AsInteger;
-              dm_principal.cdsAlunoMATRICULA.AsInteger :=  (StrToInt(FormatDateTime('yyyy', Now))*10000)  + IdAluno ;
+              dm_principal.cdsAlunoMATRICULA.AsInteger :=  (StrToInt(FormatDateTime('yyyy', Now))*1000000)  + IdAluno ;
               dm_principal.cdsAlunoDATA_MATRICULA.AsDateTime := Now;
               dm_principal.cdsAlunoSITUACAO.AsInteger :=  1;            
               dm_principal.cdsAluno.Post;
@@ -487,13 +598,27 @@ begin
               dm_principal.cdsCandidatoPESSOA.AsInteger := IdPessoa;
               dm_principal.cdsCandidato.Post;
 
-              IdPessoa   := dm_principal.ProximoID('CANDIDATO');
+              IdCandidato   := dm_principal.ProximoID('CANDIDATO');
             end
             else
               IdCandidato := dm_principal.cdsCandidatoCANDIDATO.AsInteger;
 
           dm_principal.cdsCandidato.ApplyUpdates(0);
           {$ENDREGION}
+
+
+
+          {$REGION 'Prontuario'}
+            if dm_principal.cdsCandidato_ProntuarioCANDIDATO.AsInteger=0 then
+            begin
+              dm_principal.cdsCandidato_Prontuario.Edit;
+              dm_principal.cdsCandidato_ProntuarioCANDIDATO.AsInteger := IdCandidato;
+              dm_principal.cdsCandidato_Prontuario.Post;
+            end;
+
+            dm_principal.cdsCandidato_Prontuario.ApplyUpdates(0);
+          {$ENDREGION}
+
 
           {$REGION 'Endereco'}
           dm_principal.cdsEndereco.First;
@@ -567,9 +692,16 @@ begin
 
     inherited;
     actGerarMatricula.Enabled := True;
+    btnMarcarTodos.Enabled := False;
     ShowMessage('Salvo com sucesso.');
 end;
 
+
+procedure TfrmCadastroCandidato.actVoltarExecute(Sender: TObject);
+begin
+  inherited;
+  Detalhe_MudarAba(true);
+end;
 
 function TfrmCadastroCandidato.CarregarDados(id_pessoa : integer): Integer;
 begin
@@ -599,6 +731,11 @@ begin
   dm_principal.cdsNecessidadeCandidato.Close;
   dm_principal.cdsNecessidadeCandidato.Params.ParamByName('PESSOA').AsInteger := id_pessoa;
   dm_principal.cdsNecessidadeCandidato.Open;
+
+
+  dm_principal.cdsCandidato_Prontuario.Close;
+  dm_principal.cdsCandidato_Prontuario.Params.ParamByName('PESSOA').AsInteger := id_pessoa;
+  dm_principal.cdsCandidato_Prontuario.Open;
 
 
   dm_principal.cdsTipoEndereco.Close;
@@ -718,6 +855,20 @@ begin
     AtualizaModoTela_Enderecos(ModoPesquisa);
 end;
 
+procedure TfrmCadastroCandidato.Detalhe_MudarAba(Voltar: boolean);
+begin
+
+   if Voltar then
+     pcDetalheCandidato.ActivePageIndex := pcDetalheCandidato.ActivePageIndex-1
+   else
+     pcDetalheCandidato.ActivePageIndex := pcDetalheCandidato.ActivePageIndex+1;
+
+
+   btnVoltar.Enabled := pcDetalheCandidato.ActivePageIndex > 0;
+   btnAvancar.Enabled := pcDetalheCandidato.ActivePageIndex < pcDetalheCandidato.PageCount-1;
+
+end;
+
 procedure TfrmCadastroCandidato.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -784,12 +935,12 @@ begin
       cxDBTextEdit3.SetFocus;
       Abort;
     end;
-   If (dm_principal.cdsContato.Active) and (dm_principal.cdsContato.RecordCount = 0) Then
-    Begin
-      Showmessage('Informe um telefone para contato.');
-      pcDetalheCandidato.ActivePageIndex := 1;
-      Abort;
-    end
+//   If (dm_principal.cdsContato.Active) and (dm_principal.cdsContato.RecordCount = 0) Then
+//    Begin
+//      Showmessage('Informe um telefone para contato.');
+//      pcDetalheCandidato.ActivePageIndex := 1;
+//      Abort;
+///    end
 end;
 
 procedure TfrmCadastroCandidato.validaEndereco(tendereco: string);
@@ -961,6 +1112,35 @@ begin
   end;
 
   end;
+end;
+
+procedure TfrmCadastroCandidato.btnCarregarFotoClick(Sender: TObject);
+begin
+  inherited;
+  edtImage.LoadFromFile;
+end;
+
+procedure TfrmCadastroCandidato.btnLimparFotoClick(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('Deseja limpar a foto?',mtWarning,[mbYes,mbNo],1) =mrYes then
+    edtImage.Clear;
+end;
+
+procedure TfrmCadastroCandidato.btnMarcarTodosClick(Sender: TObject);
+begin
+  inherited;
+  if btnMarcarTodos.Tag=0 then btnMarcarTodos.Tag := 1 else btnMarcarTodos.Tag := 0;
+
+  TClientDataSet(dsBase.DataSet).First;
+  while NOT TClientDataSet(dsBase.DataSet).EOF do
+  begin
+    TClientDataSet(dsBase.DataSet).Edit;
+    TClientDataSet(dsBase.DataSet).FieldByName('SEL').AsInteger := btnMarcarTodos.Tag;
+    TClientDataSet(dsBase.DataSet).post;
+  TClientDataSet(dsBase.DataSet).Next;
+  end;
+
 end;
 
 end.

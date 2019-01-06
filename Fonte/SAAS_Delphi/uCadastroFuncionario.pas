@@ -29,7 +29,8 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, cxGroupBox, cxDBLookupComboBox, cxMaskEdit,
   cxTextEdit, Vcl.ComCtrls, Vcl.ToolWin, Vcl.ExtCtrls, cxDropDownEdit,
-  cxImageComboBox, cxDBEdit, cxCalendar, Vcl.StdCtrls, uDM_Principal, Data.SqlExpr, Datasnap.DBClient;
+  cxImageComboBox, cxDBEdit, cxCalendar, Vcl.StdCtrls, uDM_Principal, Data.SqlExpr, Datasnap.DBClient,
+  cxCheckBox, cxLookupEdit, cxDBLookupEdit;
 
 type
   TfrmCadastroFuncionario = class(TfrmCadastroBase)
@@ -106,7 +107,14 @@ type
     actEnderecoExcluir: TAction;
     actEnderecoSalvar: TAction;
     actEnderecoCancelar: TAction;
+    tsAcessoSistema: TcxTabSheet;
+    Label1: TLabel;
+    cxDBTextEdit5: TcxDBTextEdit;
     cxDBTextEdit1: TcxDBTextEdit;
+    Label5: TLabel;
+    cxDBLookupComboBox1: TcxDBLookupComboBox;
+    cxDBCheckBox1: TcxDBCheckBox;
+    Label9: TLabel;
     procedure actNovoExecute(Sender: TObject);
     procedure AtualizaModoTela_Contatos(Status : Integer);
     procedure AtualizaModoTela_Enderecos(Status : Integer);
@@ -118,9 +126,14 @@ type
     procedure actSalvarExecute(Sender: TObject);
     procedure actPesquisarExecute(Sender: TObject);
     procedure actEditarExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
+      fModoBuscar: Boolean;
+      fFuncSelecionado : integer;
     { Private declarations }
   public
+    property ModoBuscar: boolean read fModoBuscar write fModoBuscar;
+    property FuncSelecionado: integer read fFuncSelecionado write fFuncSelecionado;
     { Public declarations }
   end;
 
@@ -140,7 +153,17 @@ end;
 
 procedure TfrmCadastroFuncionario.actEditarExecute(Sender: TObject);
 begin
-  inherited;
+  if not ModoBuscar then
+    inherited
+  else
+  begin
+    FuncSelecionado  := dm_principal.cdsTelaFuncionarioFUNCIONARIO.AsInteger;
+    close;
+    exit;
+  end;
+
+
+
   CarregarDados( TClientDataSet(dsBase.DataSet).FieldByName('PESSOA').AsInteger);
   dm_principal.cdsPessoa.Edit ;
   dm_principal.cdsFuncionario.Edit;
@@ -199,7 +222,10 @@ begin
   CarregarDados( -1 );
   dm_principal.cdsPessoa.Append;
   dm_principal.cdsFuncionario.Append;
+  dm_principal.cdsUsuarios.Append;
+
   dm_principal.cdsPessoaPESSOA.AsInteger := 0;
+
 //  dm_principal.cdsFuncionarioFUNCIONARIO.AsInteger := 0;
 
 
@@ -296,6 +322,17 @@ begin
             end;
             dm_principal.cdsContato.ApplyUpdates(0);
           {$ENDREGION}
+
+
+          {$REGION 'Usuarios'}
+            dm_principal.cdsUsuarios.Edit;
+            dm_principal.cdsUsuariosFUNCIONARIO.AsInteger := IdFuncionario;
+            dm_principal.cdsUsuariosPESSOA.AsInteger := IdPessoa;
+            dm_principal.cdsUsuarios.Post;
+            dm_principal.cdsUsuarios.ApplyUpdates(0);
+          {$ENDREGION}
+
+
 
 
           dm_principal.conSAAS1.Commit;
@@ -435,6 +472,10 @@ begin
   dm_principal.cdsContato.Params.ParamByName('PESSOA').AsInteger := id_pessoa;
   dm_principal.cdsContato.Open;
 
+  dm_principal.cdsUsuarios.Close;
+  dm_principal.cdsUsuarios.Params.ParamByName('PESSOA').AsInteger := id_pessoa;
+  dm_principal.cdsUsuarios.Open;
+
 
   dm_principal.cdsTipoEndereco.Close;
   dm_principal.cdsTipoEndereco.Open;
@@ -447,7 +488,27 @@ begin
 
   dm_principal.cdsTipoContato.Close;
   dm_principal.cdsTipoContato.Open;
+
+  dm_principal.cdsGrupoAcesso.Open;
 {$ENDREGION}
+end;
+
+procedure TfrmCadastroFuncionario.FormShow(Sender: TObject);
+begin
+  inherited;
+
+
+  if ModoBuscar then
+  begin
+    btnNovo.Visible := ivNever;
+    btnEditar.Visible := ivNever;
+    btnExcluir.Visible := ivNever;
+    btnSalvar.Visible := ivNever;
+    btnCancelar.Visible := ivNever;
+    btnImprimirRel.Visible := ivNever;
+    pcDetalheCandidato.Visible := false;
+
+  end;
 end;
 
 procedure TfrmCadastroFuncionario.validaEndereco(tendereco: string);

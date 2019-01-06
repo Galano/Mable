@@ -12,6 +12,7 @@
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
@@ -81,6 +82,7 @@
       LookAndFeel.NativeStyle = False
       ModalResult = 2
       TabOrder = 5
+      OnClick = cxButton1Click
     end
   end
 end

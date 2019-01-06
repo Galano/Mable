@@ -132,13 +132,26 @@ end;
 
 procedure TfrmCadastroBase.actEditarExecute(Sender: TObject);
 begin
- AtualizaModoTela(ModoEdicao);
+  if (not dsBase.DataSet.Active)  or (dsBase.DataSet.RecordCount=0) then
+  begin
+    ShowMEssage('Dados não encontrados.');
+    Abort;
+  end
+  else
+   AtualizaModoTela(ModoEdicao);
+
  //Implementar
 end;
 
 procedure TfrmCadastroBase.actExcluirExecute(Sender: TObject);
 begin
  //Implementar
+  if (not dsBase.DataSet.Active)  or (dsBase.DataSet.RecordCount=0) then
+  begin
+    ShowMEssage('Dados não encontrados.');
+    Abort;
+  end
+  else
  AtualizaModoTela(ModoPesquisa);
 end;
 
@@ -160,7 +173,8 @@ end;
 
 procedure TfrmCadastroBase.actFecharExecute(Sender: TObject);
 begin
- Close;
+  Close;
+  Self.Free;
 end;
 
 procedure TfrmCadastroBase.actImprimirRelatorioExecute(Sender: TObject);
@@ -206,6 +220,7 @@ begin
   tsDados.TabVisible    := True;
   vwGridBase.OptionsSelection.CellSelect := False;
   vwGridBase.OnCellDblClick := vwGridBaseCellDblClick;
+  pnlDadosPesquisa.Visible := False;
 
   case Status of
       ModoPesquisa :  begin
@@ -215,6 +230,7 @@ begin
                         actEditar.Enabled     := True and PermissaoEditar;
                         actExcluir.Enabled    := True and PermissaoExcluir;
                         actNovo.Enabled       := True and PermissaoIncluir;
+                        pnlDadosPesquisa.Visible := True;
                       end;
       ModoInclusao :  begin
                         tsDados.TabVisible      := False;
@@ -249,7 +265,6 @@ begin
   PermissaoIncluir  := true;
   PermissaoExcluir  := true;
   PermissaoEditar   := true;
-  AtualizaModoTela(ModoPesquisa);
 end;
 
 procedure TfrmCadastroBase.FormKeyDown(Sender: TObject; var Key: Word;
@@ -266,7 +281,7 @@ end;
 procedure TfrmCadastroBase.FormShow(Sender: TObject);
 begin
   pcControleTela.ActivePageIndex := 0;
-
+  AtualizaModoTela(ModoPesquisa);
 end;
 
 procedure TfrmCadastroBase.vwGridBaseCellDblClick(
