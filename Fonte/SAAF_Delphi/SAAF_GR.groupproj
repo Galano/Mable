@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8ed58a06-6589-4364-90c8-9bf60c482585}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SAAF.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\SAAF_Atualizador\Atualizador.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SAAF">
+        <MSBuild Projects="SAAF.dproj"/>
+    </Target>
+    <Target Name="SAAF:Clean">
+        <MSBuild Projects="SAAF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SAAF:Make">
+        <MSBuild Projects="SAAF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Atualizador">
+        <MSBuild Projects="..\SAAF_Atualizador\Atualizador.dproj"/>
+    </Target>
+    <Target Name="Atualizador:Clean">
+        <MSBuild Projects="..\SAAF_Atualizador\Atualizador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Atualizador:Make">
+        <MSBuild Projects="..\SAAF_Atualizador\Atualizador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SAAF;Atualizador"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SAAF:Clean;Atualizador:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SAAF:Make;Atualizador:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
