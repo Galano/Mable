@@ -83,6 +83,7 @@ object frmPrincipal: TfrmPrincipal
       Index = 1
     end
     object dxRibbon1Tab3: TdxRibbonTab
+      Active = True
       Caption = 'Sistema'
       Groups = <
         item
@@ -91,7 +92,6 @@ object frmPrincipal: TfrmPrincipal
       Index = 2
     end
     object rbMenuPrincipalTab2: TdxRibbonTab
-      Active = True
       Caption = 'Movimenta'#231#227'o'
       Groups = <
         item

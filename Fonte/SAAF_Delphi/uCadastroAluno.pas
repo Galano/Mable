@@ -197,7 +197,6 @@ begin
     btnGerarMatricula.Visible := ivNever;
     btnImprimirRel.Visible := ivNever;
     pcDetalheCandidato.Visible := false;
-
   end;
 end;
 

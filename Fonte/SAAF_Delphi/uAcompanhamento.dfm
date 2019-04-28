@@ -7,7 +7,7 @@ inherited frmAcompanhamento: TfrmAcompanhamento
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlDadosPesquisa: TcxGroupBox
-    ExplicitWidth = 646
+    ExplicitWidth = 689
     ExplicitHeight = 23
     Height = 23
     Width = 689
@@ -16,19 +16,22 @@ inherited frmAcompanhamento: TfrmAcompanhamento
     Top = 81
     Width = 689
     Height = 363
+    Properties.ActivePage = tsDetalhe
     ExplicitTop = 81
-    ExplicitWidth = 646
-    ExplicitHeight = 374
+    ExplicitWidth = 689
+    ExplicitHeight = 363
     ClientRectBottom = 361
     ClientRectRight = 687
     inherited tsDados: TcxTabSheet
-      ExplicitWidth = 642
-      ExplicitHeight = 346
+      ExplicitLeft = 2
+      ExplicitTop = 26
+      ExplicitWidth = 685
+      ExplicitHeight = 335
       inherited cxGridBase: TcxGrid
         Width = 685
         Height = 335
-        ExplicitWidth = 642
-        ExplicitHeight = 346
+        ExplicitWidth = 685
+        ExplicitHeight = 335
         inherited vwGridBase: TcxGridDBTableView
           object vwGridBaseACOMPANHAMENTO: TcxGridDBColumn
             Caption = 'ID'
@@ -65,8 +68,8 @@ inherited frmAcompanhamento: TfrmAcompanhamento
     inherited tsDetalhe: TcxTabSheet
       ExplicitLeft = 2
       ExplicitTop = 26
-      ExplicitWidth = 642
-      ExplicitHeight = 346
+      ExplicitWidth = 685
+      ExplicitHeight = 335
       object Label1: TLabel
         Left = 70
         Top = 20
@@ -126,7 +129,6 @@ inherited frmAcompanhamento: TfrmAcompanhamento
         DataBinding.DataField = 'OBSERVACOES'
         DataBinding.DataSource = dm_principal.dsAcompanhamento
         TabOrder = 2
-        ExplicitHeight = 214
         Height = 203
         Width = 565
       end

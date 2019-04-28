@@ -161,6 +161,9 @@ var
   frmCadastroAluno: TfrmCadastroAluno;
 begin
   frmCadastroAluno := TfrmCadastroAluno.create(self);
+  frmCadastroAluno.WindowState := wsNormal;
+  frmCadastroAluno.FormStyle   := fsNormal;
+  frmCadastroAluno.Position    := poScreenCenter;
   frmCadastroAluno.ModoBuscar := True;
   frmCadastroAluno.ShowModal;
   dbcbAluno.EditValue :=  frmCadastroAluno.AlunoSelecionado;

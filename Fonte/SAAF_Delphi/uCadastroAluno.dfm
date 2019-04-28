@@ -7,7 +7,7 @@ inherited frmCadastroAluno: TfrmCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlDadosPesquisa: TcxGroupBox
-    ExplicitWidth = 835
+    ExplicitWidth = 853
     ExplicitHeight = 38
     Height = 38
     Width = 853
@@ -36,7 +36,7 @@ inherited frmCadastroAluno: TfrmCadastroAluno
     TabOrder = 1
     Properties.ActivePage = tsDados
     ExplicitTop = 96
-    ExplicitWidth = 835
+    ExplicitWidth = 853
     ExplicitHeight = 381
     ClientRectBottom = 379
     ClientRectRight = 851
@@ -44,12 +44,12 @@ inherited frmCadastroAluno: TfrmCadastroAluno
       Caption = 'Usuario'
       ExplicitLeft = 2
       ExplicitTop = 26
-      ExplicitWidth = 831
+      ExplicitWidth = 849
       ExplicitHeight = 353
       inherited cxGridBase: TcxGrid
         Width = 849
         Height = 353
-        ExplicitWidth = 831
+        ExplicitWidth = 849
         ExplicitHeight = 353
         inherited vwGridBase: TcxGridDBTableView
           OnCellClick = vwGridBaseCellClick
@@ -80,21 +80,19 @@ inherited frmCadastroAluno: TfrmCadastroAluno
     end
     inherited tsDetalhe: TcxTabSheet
       Caption = 'Dados Cadastrais'
-      ExplicitWidth = 831
+      ExplicitWidth = 849
       ExplicitHeight = 353
       inherited pcDetalheCandidato: TcxPageControl
         Width = 849
-        Height = 353
+        Height = 321
         Properties.ActivePage = cxTabSheet2
-        ExplicitWidth = 831
-        ExplicitHeight = 353
-        ClientRectBottom = 351
+        ExplicitWidth = 849
+        ExplicitHeight = 321
+        ClientRectBottom = 319
         ClientRectRight = 847
         inherited tsCandidato: TcxTabSheet
-          ExplicitLeft = -94
-          ExplicitTop = 130
           ExplicitWidth = 845
-          ExplicitHeight = 325
+          ExplicitHeight = 293
           inherited cxDBTextEdit2: TcxDBTextEdit
             TabOrder = 0
           end
@@ -224,36 +222,36 @@ inherited frmCadastroAluno: TfrmCadastroAluno
           end
         end
         inherited tsMedico: TcxTabSheet
-          ExplicitWidth = 827
-          ExplicitHeight = 325
+          ExplicitWidth = 845
+          ExplicitHeight = 293
           inherited cxGroupBox1: TcxGroupBox
-            ExplicitWidth = 827
+            ExplicitWidth = 845
             Width = 845
             inherited cxLabel2: TcxLabel
               AnchorX = 55
             end
             inherited cxDBTextEdit9: TcxDBTextEdit
-              ExplicitWidth = 388
+              ExplicitWidth = 406
               Width = 406
             end
             inherited cxDBTextEdit11: TcxDBTextEdit
-              ExplicitWidth = 388
+              ExplicitWidth = 406
               Width = 406
             end
           end
           inherited cxGroupBox2: TcxGroupBox
-            ExplicitWidth = 827
+            ExplicitWidth = 845
             Width = 845
             inherited Label25: TLabel
               Left = 560
               ExplicitLeft = 542
             end
             inherited cxDBTextEdit17: TcxDBTextEdit
-              ExplicitWidth = 524
+              ExplicitWidth = 542
               Width = 542
             end
             inherited cxDBTextEdit18: TcxDBTextEdit
-              ExplicitWidth = 492
+              ExplicitWidth = 510
               Width = 510
             end
             inherited cxDBTextEdit19: TcxDBTextEdit
@@ -262,29 +260,31 @@ inherited frmCadastroAluno: TfrmCadastroAluno
             end
           end
           inherited cxGroupBox5: TcxGroupBox
-            ExplicitWidth = 827
+            ExplicitWidth = 845
             Width = 845
             inherited cxDBTextEdit12: TcxDBTextEdit
-              ExplicitWidth = 314
+              ExplicitWidth = 332
               Width = 332
             end
           end
           inherited cxGroupBox11: TcxGroupBox
-            ExplicitWidth = 827
+            ExplicitWidth = 845
             Width = 845
           end
         end
         inherited cxTabSheet1: TcxTabSheet
-          ExplicitWidth = 827
-          ExplicitHeight = 325
+          ExplicitWidth = 845
+          ExplicitHeight = 293
           inherited cxGroupBox6: TcxGroupBox
             Top = 53
             TabOrder = 0
+            ExplicitTop = 53
             ExplicitWidth = 845
             Width = 845
           end
           inherited cxGroupBox4: TcxGroupBox
             Top = 166
+            ExplicitTop = 166
             ExplicitWidth = 845
             Width = 845
           end
@@ -296,11 +296,13 @@ inherited frmCadastroAluno: TfrmCadastroAluno
           inherited cxGroupBox7: TcxGroupBox
             Top = 116
             TabOrder = 3
+            ExplicitTop = 116
             ExplicitWidth = 845
             Width = 845
           end
           inherited GroupBox1: TGroupBox
             Width = 845
+            ExplicitWidth = 845
             inherited cxGroupBox10: TcxGroupBox
               ExplicitWidth = 369
               Width = 369
@@ -308,9 +310,36 @@ inherited frmCadastroAluno: TfrmCadastroAluno
           end
         end
         inherited cxTabSheet2: TcxTabSheet
-          ExplicitWidth = 827
-          ExplicitHeight = 325
+          ExplicitWidth = 845
+          ExplicitHeight = 293
+          inherited cxGroupBox12: TcxGroupBox
+            ExplicitWidth = 845
+            Width = 845
+            inherited cxDBTextEdit23: TcxDBTextEdit
+              Width = 238
+            end
+          end
+          inherited cxGroupBox13: TcxGroupBox
+            ExplicitWidth = 845
+            Width = 845
+            inherited cxDBTextEdit20: TcxDBTextEdit
+              Width = 635
+            end
+          end
+          inherited cxGroupBox14: TcxGroupBox
+            ExplicitWidth = 845
+            Width = 845
+            inherited cxDBTextEdit21: TcxDBTextEdit
+              Width = 635
+            end
+          end
         end
+      end
+      inherited cxGroupBox15: TcxGroupBox
+        Top = 321
+        ExplicitTop = 321
+        ExplicitWidth = 849
+        Width = 849
       end
     end
   end

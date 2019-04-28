@@ -84,7 +84,7 @@ try
   dm_principal.cdsRelatorioAlunos.Close;
   dm_principal.cdsRelatorioAlunos.Open;
   ppRelatorioBase.PrintReport;
-   btnImprimirRel.Visible := ivAlways;
+  btnImprimirRel.Visible := ivAlways;
 finally
 
 end;
